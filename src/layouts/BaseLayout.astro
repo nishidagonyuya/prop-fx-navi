@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { url } from "../lib/url";
 
 interface Props {
   title: string;
@@ -24,17 +25,17 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
 </head>
 <body>
   <header class="site-header">
     <div class="container">
-      <a href="/" class="logo">プロップ<span>FXナビ</span></a>
+      <a href={url("/")} class="logo">プロップ<span>FXナビ</span></a>
       <nav>
-        <a href="/prop/">プロップファーム</a>
-        <a href="/prop/ranking/">ランキング</a>
-        <a href="/guide/">入門ガイド</a>
-        <a href="/about/">運営者</a>
+        <a href={url("/prop/")}>プロップファーム</a>
+        <a href={url("/prop/ranking/")}>ランキング</a>
+        <a href={url("/guide/")}>入門ガイド</a>
+        <a href={url("/about/")}>運営者</a>
       </nav>
     </div>
   </header>
@@ -44,10 +45,10 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
   <footer class="site-footer">
     <div class="container">
       <div class="links">
-        <a href="/about/">運営者情報</a>
-        <a href="/disclosure/">広告開示</a>
-        <a href="/privacy/">プライバシーポリシー</a>
-        <a href="/contact/">お問い合わせ</a>
+        <a href={url("/about/")}>運営者情報</a>
+        <a href={url("/disclosure/")}>広告開示</a>
+        <a href={url("/privacy/")}>プライバシーポリシー</a>
+        <a href={url("/contact/")}>お問い合わせ</a>
       </div>
       <div>&copy; 2026 プロップFXナビ. 当サイトはアフィリエイトプログラムに参加しています.</div>
     </div>

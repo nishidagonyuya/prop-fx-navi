@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import props from "../data/props.json";
+import { url } from "../lib/url";
 
 const sorted = [...props].sort((a, b) => b.review_score - a.review_score);
 const totalFirms = props.length;
@@ -26,7 +27,7 @@ const totalFirms = props.length;
       <h2>総合ランキング<span class="badge">2026年最新</span></h2>
       <div class="prop-grid">
         {sorted.map((p) => (
-          <a class="prop-card" href={`/prop/${p.slug}/`}>
+          <a class="prop-card" href={url(`/prop/${p.slug}/`)}>
             <div class="head">
               <div class="name">{p.name_en}</div>
               <div class="score">★ {p.review_score}</div>
@@ -61,17 +62,17 @@ const totalFirms = props.length;
     <div class="container">
       <h2>目的別おすすめ</h2>
       <div class="prop-grid">
-        <a class="prop-card" href="/prop/ranking/beginner/">
+        <a class="prop-card" href={url("/prop/ranking/beginner/")}>
           <div class="head"><div class="name">初心者向け</div></div>
           <div class="tagline">日本語サポート・信頼性・分かりやすいルールで選ぶならこの3社</div>
           <div class="cta">ランキングを見る →</div>
         </a>
-        <a class="prop-card" href="/prop/ranking/high-split/">
+        <a class="prop-card" href={url("/prop/ranking/high-split/")}>
           <div class="head"><div class="name">高スプリット重視</div></div>
           <div class="tagline">プロフィットスプリット90%以上のプロップだけを厳選</div>
           <div class="cta">ランキングを見る →</div>
         </a>
-        <a class="prop-card" href="/prop/ranking/ea-friendly/">
+        <a class="prop-card" href={url("/prop/ranking/ea-friendly/")}>
           <div class="head"><div class="name">EA・自動売買OK</div></div>
           <div class="tagline">EA・スキャル・ニュース時取引すべて可能なプロップ</div>
           <div class="cta">ランキングを見る →</div>

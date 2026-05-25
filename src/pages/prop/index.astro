@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import props from "../../data/props.json";
+import { url } from "../../lib/url";
 
 const sorted = [...props].sort((a, b) => b.review_score - a.review_score);
 ---
@@ -19,7 +20,7 @@ const sorted = [...props].sort((a, b) => b.review_score - a.review_score);
     <div class="container">
       <div class="prop-grid">
         {sorted.map((p) => (
-          <a class="prop-card" href={`/prop/${p.slug}/`}>
+          <a class="prop-card" href={url(`/prop/${p.slug}/`)}>
             <div class="head">
               <div class="name">{p.name_en}</div>
               <div class="score">★ {p.review_score}</div>
