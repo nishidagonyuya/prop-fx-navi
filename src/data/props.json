@@ -1,0 +1,205 @@
+[
+  {
+    "slug": "ftmo",
+    "name_ja": "FTMO",
+    "name_en": "FTMO",
+    "logo": "/logos/ftmo.svg",
+    "official_url": "https://ftmo.com",
+    "affiliate_url": "",
+    "headquarters": "チェコ・プラハ",
+    "founded_year": 2015,
+    "payout_total_usd": "300,000,000+",
+    "tagline": "プロップファーム業界の王様。日本人トレーダーから最も信頼されている老舗",
+    "challenge_types": [
+      {
+        "name": "FTMO Challenge $100k",
+        "account_size_usd": 100000,
+        "fee_usd": 540,
+        "profit_target_phase1_pct": 10,
+        "profit_target_phase2_pct": 5,
+        "max_loss_per_day_pct": 5,
+        "max_total_loss_pct": 10,
+        "profit_split_pct": 80,
+        "refundable": true,
+        "time_limit_days": null
+      },
+      {
+        "name": "FTMO Challenge $200k",
+        "account_size_usd": 200000,
+        "fee_usd": 1080,
+        "profit_target_phase1_pct": 10,
+        "profit_target_phase2_pct": 5,
+        "max_loss_per_day_pct": 5,
+        "max_total_loss_pct": 10,
+        "profit_split_pct": 80,
+        "refundable": true,
+        "time_limit_days": null
+      }
+    ],
+    "features": {
+      "ea_allowed": true,
+      "news_trading_allowed": true,
+      "scalping_allowed": true,
+      "hedging_allowed": true,
+      "weekend_holding": false,
+      "swap_free": false,
+      "copy_trading": false,
+      "japanese_support": true
+    },
+    "platforms": ["MT4", "MT5", "cTrader", "DXtrade"],
+    "payout_methods": ["銀行送金", "PayPal", "Crypto(USDT)"],
+    "min_payout_days": 14,
+    "payout_frequency": "オンデマンド",
+    "pros": [
+      "業界最大手で信頼性が圧倒的",
+      "日本語サポートあり",
+      "ニュース・EA・スキャル全て可能",
+      "Free Trial で本番環境を試せる"
+    ],
+    "cons": [
+      "週末ポジション持ち越し不可",
+      "Refund を受けるには厳格な条件",
+      "リアル送金まで最短でも30日"
+    ],
+    "review_summary": "プロップファームの代名詞。初めての挑戦ならまずFTMOで間違いない。",
+    "review_score": 4.7,
+    "review_count_external": 12000,
+    "best_for": ["初心者", "信頼性重視", "日本人トレーダー"],
+    "updated_at": "2026-05-25"
+  },
+  {
+    "slug": "fundednext",
+    "name_ja": "FundedNext",
+    "name_en": "FundedNext",
+    "logo": "/logos/fundednext.svg",
+    "official_url": "https://fundednext.com",
+    "affiliate_url": "",
+    "headquarters": "UAE・ドバイ",
+    "founded_year": 2022,
+    "payout_total_usd": "200,000,000+",
+    "tagline": "急成長中の新世代プロップ。最大95%のプロフィットスプリットが魅力",
+    "challenge_types": [
+      {
+        "name": "Stellar 2-Step $100k",
+        "account_size_usd": 100000,
+        "fee_usd": 549,
+        "profit_target_phase1_pct": 8,
+        "profit_target_phase2_pct": 5,
+        "max_loss_per_day_pct": 5,
+        "max_total_loss_pct": 10,
+        "profit_split_pct": 95,
+        "refundable": true,
+        "time_limit_days": null
+      },
+      {
+        "name": "Express $100k (1-Step)",
+        "account_size_usd": 100000,
+        "fee_usd": 599,
+        "profit_target_phase1_pct": 25,
+        "profit_target_phase2_pct": null,
+        "max_loss_per_day_pct": 5,
+        "max_total_loss_pct": 8,
+        "profit_split_pct": 60,
+        "refundable": false,
+        "time_limit_days": null
+      }
+    ],
+    "features": {
+      "ea_allowed": true,
+      "news_trading_allowed": true,
+      "scalping_allowed": true,
+      "hedging_allowed": true,
+      "weekend_holding": true,
+      "swap_free": true,
+      "copy_trading": false,
+      "japanese_support": false
+    },
+    "platforms": ["MT4", "MT5"],
+    "payout_methods": ["銀行送金", "Crypto(USDT/BTC)", "Wise"],
+    "min_payout_days": 5,
+    "payout_frequency": "週次",
+    "pros": [
+      "プロフィットスプリットが最大95%と業界最高水準",
+      "週末ポジ持ち越しOK",
+      "Swap Free 口座が選べる",
+      "出金スピードが速い（最短5日）"
+    ],
+    "cons": [
+      "日本語サポートなし",
+      "新興プロップで歴史が浅い",
+      "ルール改定が頻繁"
+    ],
+    "review_summary": "リターン最大化を狙うなら最有力。英語が苦手でなければ第一候補。",
+    "review_score": 4.5,
+    "review_count_external": 8500,
+    "best_for": ["大口", "高スプリット重視", "週末ホールド派"],
+    "updated_at": "2026-05-25"
+  },
+  {
+    "slug": "the5ers",
+    "name_ja": "The5ers",
+    "name_en": "The5%ers",
+    "logo": "/logos/the5ers.svg",
+    "official_url": "https://the5ers.com",
+    "affiliate_url": "",
+    "headquarters": "イスラエル・テルアビブ",
+    "founded_year": 2016,
+    "payout_total_usd": "100,000,000+",
+    "tagline": "リスク制限が緩く長期トレーダー向け。プロップ業界の老舗の一つ",
+    "challenge_types": [
+      {
+        "name": "Hyper Growth $100k",
+        "account_size_usd": 100000,
+        "fee_usd": 595,
+        "profit_target_phase1_pct": 8,
+        "profit_target_phase2_pct": 5,
+        "max_loss_per_day_pct": 5,
+        "max_total_loss_pct": 10,
+        "profit_split_pct": 80,
+        "refundable": true,
+        "time_limit_days": null
+      },
+      {
+        "name": "Bootcamp $100k",
+        "account_size_usd": 100000,
+        "fee_usd": 245,
+        "profit_target_phase1_pct": 6,
+        "profit_target_phase2_pct": 6,
+        "max_loss_per_day_pct": 4,
+        "max_total_loss_pct": 5,
+        "profit_split_pct": 100,
+        "refundable": false,
+        "time_limit_days": null
+      }
+    ],
+    "features": {
+      "ea_allowed": true,
+      "news_trading_allowed": false,
+      "scalping_allowed": true,
+      "hedging_allowed": true,
+      "weekend_holding": true,
+      "swap_free": false,
+      "copy_trading": true,
+      "japanese_support": false
+    },
+    "platforms": ["MT5", "Match-Trader"],
+    "payout_methods": ["銀行送金", "PayPal", "Crypto"],
+    "min_payout_days": 30,
+    "payout_frequency": "月次",
+    "pros": [
+      "Bootcampは初期費用が安く100%スプリット",
+      "週末ホールド可能",
+      "アカウントスケーリング制度あり"
+    ],
+    "cons": [
+      "ニュース時のトレード禁止",
+      "出金は月1回",
+      "日本語サポートなし"
+    ],
+    "review_summary": "スイングトレード派・低予算からスタートしたい人向け。",
+    "review_score": 4.2,
+    "review_count_external": 5200,
+    "best_for": ["スイング派", "低予算スタート", "スケーリング目的"],
+    "updated_at": "2026-05-25"
+  }
+]

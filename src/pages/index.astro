@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import props from "../data/props.json";
+
+const sorted = [...props].sort((a, b) => b.review_score - a.review_score);
+const totalFirms = props.length;
+---
+<BaseLayout
+  title="プロップFXナビ"
+  description="日本人FXトレーダー向け プロップファーム徹底比較。FTMO・FundedNext・The5%ers など主要プロップを実評価でランキング。プロフィットスプリット・出金条件・日本語サポートまで網羅。"
+>
+  <section class="hero">
+    <div class="container">
+      <h1>日本人トレーダーのための<br><span class="accent">プロップファーム比較</span>データベース</h1>
+      <p>FTMO・FundedNext・The5%ersなど主要プロップを徹底比較。プロフィットスプリット、出金条件、日本語サポート、EA可否まで完全網羅。あなたに合うプロップが3分で見つかる。</p>
+      <div class="meta">
+        <div><strong>{totalFirms}社</strong>掲載中</div>
+        <div><strong>2026年5月</strong>最終更新</div>
+        <div><strong>100%</strong>独立評価</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>総合ランキング<span class="badge">2026年最新</span></h2>
+      <div class="prop-grid">
+        {sorted.map((p) => (
+          <a class="prop-card" href={`/prop/${p.slug}/`}>
+            <div class="head">
+              <div class="name">{p.name_en}</div>
+              <div class="score">★ {p.review_score}</div>
+            </div>
+            <div class="tagline">{p.tagline}</div>
+            <div class="stats">
+              <div class="stat">
+                <div class="label">最大スプリット</div>
+                <div class="value">{Math.max(...p.challenge_types.map((c) => c.profit_split_pct))}%</div>
+              </div>
+              <div class="stat">
+                <div class="label">最低料金</div>
+                <div class="value">${Math.min(...p.challenge_types.map((c) => c.fee_usd))}</div>
+              </div>
+              <div class="stat">
+                <div class="label">日本語</div>
+                <div class="value">{p.features.japanese_support ? "対応" : "なし"}</div>
+              </div>
+              <div class="stat">
+                <div class="label">出金最短</div>
+                <div class="value">{p.min_payout_days}日</div>
+              </div>
+            </div>
+            <div class="cta">詳細を見る →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>目的別おすすめ</h2>
+      <div class="prop-grid">
+        <a class="prop-card" href="/prop/ranking/beginner/">
+          <div class="head"><div class="name">初心者向け</div></div>
+          <div class="tagline">日本語サポート・信頼性・分かりやすいルールで選ぶならこの3社</div>
+          <div class="cta">ランキングを見る →</div>
+        </a>
+        <a class="prop-card" href="/prop/ranking/high-split/">
+          <div class="head"><div class="name">高スプリット重視</div></div>
+          <div class="tagline">プロフィットスプリット90%以上のプロップだけを厳選</div>
+          <div class="cta">ランキングを見る →</div>
+        </a>
+        <a class="prop-card" href="/prop/ranking/ea-friendly/">
+          <div class="head"><div class="name">EA・自動売買OK</div></div>
+          <div class="tagline">EA・スキャル・ニュース時取引すべて可能なプロップ</div>
+          <div class="cta">ランキングを見る →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

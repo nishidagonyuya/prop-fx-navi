@@ -1,0 +1,178 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import props from "../../data/props.json";
+
+export function getStaticPaths() {
+  return props.map((p) => ({ params: { slug: p.slug }, props: { firm: p } }));
+}
+
+const { firm } = Astro.props;
+
+const featureLabels: Record<string, string> = {
+  ea_allowed: "EA・自動売買",
+  news_trading_allowed: "ニュース時取引",
+  scalping_allowed: "スキャルピング",
+  hedging_allowed: "両建て",
+  weekend_holding: "週末ポジ持ち越し",
+  swap_free: "スワップフリー",
+  copy_trading: "コピートレード",
+  japanese_support: "日本語サポート",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  itemReviewed: {
+    "@type": "Organization",
+    name: firm.name_en,
+    url: firm.official_url,
+  },
+  reviewRating: {
+    "@type": "Rating",
+    ratingValue: firm.review_score,
+    bestRating: 5,
+  },
+  author: { "@type": "Organization", name: "プロップFXナビ" },
+  datePublished: firm.updated_at,
+};
+---
+<BaseLayout
+  title={`${firm.name_en} 評判・口コミ・料金（2026年最新）`}
+  description={`${firm.name_en}（${firm.tagline}）の料金・プロフィットスプリット・出金条件・日本語対応を徹底解説。実際に使った評価レビュー付き。`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="detail-head">
+    <div class="container">
+      <div class="row">
+        <div style="flex:1; min-width:280px;">
+          <h1>{firm.name_en}</h1>
+          <p class="tagline">{firm.tagline}</p>
+          <div class="meta-pills">
+            <span class="pill">本拠地: {firm.headquarters}</span>
+            <span class="pill">創業 {firm.founded_year}年</span>
+            <span class="pill">累計支払 ${firm.payout_total_usd}</span>
+            {firm.features.japanese_support && <span class="pill" style="color:#00d4aa;">日本語OK</span>}
+          </div>
+        </div>
+        <div>
+          <div class="score-box">
+            <div class="big">{firm.review_score}</div>
+            <div class="label">/ 5.0 ({firm.review_count_external.toLocaleString()}件の評価)</div>
+            <a class="cta-big" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener">公式サイトを見る</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>{firm.name_en} の評価サマリー</h2>
+      <p>{firm.review_summary}</p>
+      <div style="margin-top:14px;">
+        <strong>こんな人におすすめ：</strong>
+        <div class="meta-pills" style="margin-top:8px;">
+          {firm.best_for.map((b) => <span class="pill">{b}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>チャレンジプラン一覧</h2>
+      <div style="overflow-x:auto;">
+        <table class="challenge-table">
+          <thead>
+            <tr>
+              <th>プラン名</th>
+              <th class="num">口座サイズ</th>
+              <th class="num">料金</th>
+              <th class="num">Phase 1 目標</th>
+              <th class="num">Phase 2 目標</th>
+              <th class="num">日次最大損失</th>
+              <th class="num">トータル最大損失</th>
+              <th class="num">スプリット</th>
+            </tr>
+          </thead>
+          <tbody>
+            {firm.challenge_types.map((c) => (
+              <tr>
+                <td><strong>{c.name}</strong></td>
+                <td class="num">${c.account_size_usd.toLocaleString()}</td>
+                <td class="num">${c.fee_usd}</td>
+                <td class="num">{c.profit_target_phase1_pct}%</td>
+                <td class="num">{c.profit_target_phase2_pct !== null ? `${c.profit_target_phase2_pct}%` : "—"}</td>
+                <td class="num">{c.max_loss_per_day_pct}%</td>
+                <td class="num">{c.max_total_loss_pct}%</td>
+                <td class="num"><strong style="color:#00d4aa;">{c.profit_split_pct}%</strong></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>取引ルール・機能</h2>
+      <div class="feat-grid">
+        {Object.entries(firm.features).map(([key, val]) => (
+          <div class={`feat ${val ? "yes" : "no"}`}>
+            <span class="check">{val ? "✓" : "×"}</span>
+            <span>{featureLabels[key] ?? key}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>メリット・デメリット</h2>
+      <div class="pc-grid">
+        <div class="pc-box pros">
+          <h3>メリット</h3>
+          <ul>{firm.pros.map((p) => <li>{p}</li>)}</ul>
+        </div>
+        <div class="pc-box cons">
+          <h3>デメリット</h3>
+          <ul>{firm.cons.map((c) => <li>{c}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>出金・対応プラットフォーム</h2>
+      <div class="pc-grid">
+        <div class="pc-box">
+          <h3>取引プラットフォーム</h3>
+          <div class="meta-pills">
+            {firm.platforms.map((p) => <span class="pill">{p}</span>)}
+          </div>
+        </div>
+        <div class="pc-box">
+          <h3>出金方法</h3>
+          <div class="meta-pills">
+            {firm.payout_methods.map((p) => <span class="pill">{p}</span>)}
+          </div>
+          <p style="margin-top:12px; font-size:0.92rem; color:var(--text-muted);">
+            最短出金 <strong style="color:var(--text);">{firm.min_payout_days}日</strong> ／ 出金頻度 <strong style="color:var(--text);">{firm.payout_frequency}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="border-bottom:none;">
+    <div class="container" style="text-align:center;">
+      <h2>{firm.name_en} に挑戦する</h2>
+      <p style="color:var(--text-muted); margin-bottom:20px;">公式サイトから直接申し込みできます</p>
+      <a class="cta-big" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener">{firm.name_en} 公式サイトへ →</a>
+    </div>
+  </section>
+</BaseLayout>

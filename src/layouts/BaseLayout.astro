@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
+const siteName = "プロップFXナビ";
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  {canonical && <link rel="canonical" href={canonical} />}
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo">プロップ<span>FXナビ</span></a>
+      <nav>
+        <a href="/prop/">プロップファーム</a>
+        <a href="/prop/ranking/">ランキング</a>
+        <a href="/guide/">入門ガイド</a>
+        <a href="/about/">運営者</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <slot />
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="links">
+        <a href="/about/">運営者情報</a>
+        <a href="/disclosure/">広告開示</a>
+        <a href="/privacy/">プライバシーポリシー</a>
+        <a href="/contact/">お問い合わせ</a>
+      </div>
+      <div>&copy; 2026 プロップFXナビ. 当サイトはアフィリエイトプログラムに参加しています.</div>
+    </div>
+  </footer>
+</body>
+</html>

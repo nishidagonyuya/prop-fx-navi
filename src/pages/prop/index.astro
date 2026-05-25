@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import props from "../../data/props.json";
+
+const sorted = [...props].sort((a, b) => b.review_score - a.review_score);
+---
+<BaseLayout
+  title="プロップファーム一覧"
+  description="掲載中のプロップファーム全社の一覧。料金・プロフィットスプリット・出金条件で比較できます。"
+>
+  <section class="hero">
+    <div class="container">
+      <h1>プロップファーム<span class="accent">全{sorted.length}社</span>一覧</h1>
+      <p>主要プロップファームを一覧で比較。スコア順に表示しています。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="prop-grid">
+        {sorted.map((p) => (
+          <a class="prop-card" href={`/prop/${p.slug}/`}>
+            <div class="head">
+              <div class="name">{p.name_en}</div>
+              <div class="score">★ {p.review_score}</div>
+            </div>
+            <div class="tagline">{p.tagline}</div>
+            <div class="stats">
+              <div class="stat">
+                <div class="label">最大スプリット</div>
+                <div class="value">{Math.max(...p.challenge_types.map((c) => c.profit_split_pct))}%</div>
+              </div>
+              <div class="stat">
+                <div class="label">最低料金</div>
+                <div class="value">${Math.min(...p.challenge_types.map((c) => c.fee_usd))}</div>
+              </div>
+              <div class="stat">
+                <div class="label">本拠地</div>
+                <div class="value">{p.headquarters}</div>
+              </div>
+              <div class="stat">
+                <div class="label">創業</div>
+                <div class="value">{p.founded_year}年</div>
+              </div>
+            </div>
+            <div class="cta">詳細を見る →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
