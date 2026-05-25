@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { url } from "../../lib/url";
+
+const guides = await getCollection("guides");
+const sorted = guides.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+---
+<BaseLayout
+  title="プロップファーム 入門ガイド"
+  description="プロップファームの基礎から税金・攻略法・トラブル対策まで、日本人トレーダーのための入門記事を網羅。"
+>
+  <section class="hero">
+    <div class="container">
+      <h1>プロップファーム<span class="accent"> 入門ガイド</span></h1>
+      <p>はじめての方も既に挑戦中の方も。プロップファームを使いこなすための知識を1記事ずつ整理しました。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="prop-grid">
+        {sorted.map((g) => (
+          <a class="prop-card" href={url(`/guide/${g.id}/`)}>
+            <div class="head">
+              <div class="name" style="font-size:1.1rem; line-height:1.4;">{g.data.title}</div>
+            </div>
+            <div class="tagline">{g.data.description}</div>
+            <div class="cta">記事を読む →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
