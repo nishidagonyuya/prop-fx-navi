@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import propsData from "../../../data/props.json";
+import { url } from "../../../lib/url";
+
+type Firm = (typeof propsData)[number];
+
+export function getStaticPaths() {
+  const firms = propsData as Firm[];
+  const paths = [];
+  for (let i = 0; i < firms.length; i++) {
+    for (let j = i + 1; j < firms.length; j++) {
+      const a = firms[i];
+      const b = firms[j];
+      paths.push({
+        params: { pair: `${a.slug}-vs-${b.slug}` },
+        props: { a, b },
+      });
+    }
+  }
+  return paths;
+}
+
+const { a, b } = Astro.props;
+
+const maxSplit = (f: Firm) => Math.max(...f.challenge_types.map((c) => c.profit_split_pct));
+const minFee = (f: Firm) => Math.min(...f.challenge_types.map((c) => c.fee_usd));
+
+const rows: Array<{ label: string; va: string | number; vb: string | number; winner?: "a" | "b" | "tie" }> = [
+  { label: "総合スコア", va: `★ ${a.review_score}`, vb: `★ ${b.review_score}`, winner: a.review_score > b.review_score ? "a" : a.review_score < b.review_score ? "b" : "tie" },
+  { label: "本拠地", va: a.headquarters, vb: b.headquarters },
+  { label: "創業", va: `${a.founded_year}年`, vb: `${b.founded_year}年`, winner: a.founded_year < b.founded_year ? "a" : a.founded_year > b.founded_year ? "b" : "tie" },
+  { label: "累計支払額", va: `$${a.payout_total_usd}`, vb: `$${b.payout_total_usd}` },
+  { label: "最大スプリット", va: `${maxSplit(a)}%`, vb: `${maxSplit(b)}%`, winner: maxSplit(a) > maxSplit(b) ? "a" : maxSplit(a) < maxSplit(b) ? "b" : "tie" },
+  { label: "最低料金", va: `$${minFee(a)}`, vb: `$${minFee(b)}`, winner: minFee(a) < minFee(b) ? "a" : minFee(a) > minFee(b) ? "b" : "tie" },
+  { label: "出金最短", va: `${a.min_payout_days}日`, vb: `${b.min_payout_days}日`, winner: a.min_payout_days < b.min_payout_days ? "a" : a.min_payout_days > b.min_payout_days ? "b" : "tie" },
+  { label: "出金頻度", va: a.payout_frequency, vb: b.payout_frequency },
+  { label: "EA・自動売買", va: a.features.ea_allowed ? "○" : "×", vb: b.features.ea_allowed ? "○" : "×" },
+  { label: "スキャルピング", va: a.features.scalping_allowed ? "○" : "×", vb: b.features.scalping_allowed ? "○" : "×" },
+  { label: "ニュース時取引", va: a.features.news_trading_allowed ? "○" : "×", vb: b.features.news_trading_allowed ? "○" : "×" },
+  { label: "週末ポジ持ち越し", va: a.features.weekend_holding ? "○" : "×", vb: b.features.weekend_holding ? "○" : "×" },
+  { label: "スワップフリー", va: a.features.swap_free ? "○" : "×", vb: b.features.swap_free ? "○" : "×" },
+  { label: "日本語サポート", va: a.features.japanese_support ? "○" : "×", vb: b.features.japanese_support ? "○" : "×" },
+  { label: "プラットフォーム", va: a.platforms.join(", "), vb: b.platforms.join(", ") },
+];
+
+const winnerCount = { a: 0, b: 0 };
+for (const r of rows) {
+  if (r.winner === "a") winnerCount.a++;
+  if (r.winner === "b") winnerCount.b++;
+}
+const overall = winnerCount.a > winnerCount.b ? a : winnerCount.a < winnerCount.b ? b : null;
+const title = `${a.name_en} vs ${b.name_en} 徹底比較`;
+const description = `${a.name_en} と ${b.name_en} を15項目で比較。プロフィットスプリット・料金・出金条件・日本語対応まで全て一覧で確認できます。`;
+---
+<BaseLayout title={`${title}【2026年最新】`} description={description}>
+  <section class="hero">
+    <div class="container">
+      <h1>{a.name_en} <span class="accent">vs</span> {b.name_en}</h1>
+      <p>{description}</p>
+      {overall && (
+        <div style="margin-top:24px; display:inline-block; padding:12px 24px; background:var(--card); border:1px solid var(--accent); border-radius:10px;">
+          <strong>総合勝者：</strong> <span style="color:var(--accent); font-weight:700;">{overall.name_en}</span>（比較15項目中 {winnerCount.a > winnerCount.b ? winnerCount.a : winnerCount.b} 項目で優位）
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div style="overflow-x:auto;">
+        <table class="challenge-table">
+          <thead>
+            <tr>
+              <th style="width:35%;">項目</th>
+              <th>{a.name_en}</th>
+              <th>{b.name_en}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr>
+                <td><strong>{r.label}</strong></td>
+                <td style={r.winner === "a" ? "color:var(--accent); font-weight:700;" : ""}>{r.va}{r.winner === "a" && " ★"}</td>
+                <td style={r.winner === "b" ? "color:var(--accent); font-weight:700;" : ""}>{r.vb}{r.winner === "b" && " ★"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>各社の詳細を見る</h2>
+      <div class="prop-grid">
+        {[a, b].map((p) => (
+          <a class="prop-card" href={url(`/prop/${p.slug}/`)}>
+            <div class="head">
+              <div class="name">{p.name_en}</div>
+              <div class="score">★ {p.review_score}</div>
+            </div>
+            <div class="tagline">{p.tagline}</div>
+            <div class="cta">詳細を見る →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

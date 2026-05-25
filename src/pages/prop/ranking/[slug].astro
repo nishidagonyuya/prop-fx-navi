@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import propsData from "../../../data/props.json";
+import { rankings, type Firm } from "../../../lib/rankings";
+import { url } from "../../../lib/url";
+
+export function getStaticPaths() {
+  return rankings.map((r) => ({
+    params: { slug: r.slug },
+    props: {
+      ranking: r,
+      ranked: (propsData as Firm[]).filter(r.filter).sort(r.sort).slice(0, 10),
+    },
+  }));
+}
+
+const { ranking, ranked } = Astro.props;
+const maxSplit = (f: Firm) => Math.max(...f.challenge_types.map((c) => c.profit_split_pct));
+const minFee = (f: Firm) => Math.min(...f.challenge_types.map((c) => c.fee_usd));
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: ranking.title,
+  description: ranking.description,
+  itemListElement: ranked.map((f, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Organization",
+      name: f.name_en,
+      url: f.official_url,
+    },
+  })),
+};
+---
+<BaseLayout title={`${ranking.title} 【2026年最新】`} description={ranking.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="hero">
+    <div class="container">
+      <h1>{ranking.title}<br/><span class="accent">2026年 最新ランキング</span></h1>
+      <p>{ranking.intro}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {ranked.length === 0 ? (
+        <p style="color:var(--text-muted);">条件に合うプロップファームが現在ありません。</p>
+      ) : (
+        <div class="prop-grid">
+          {ranked.map((p, i) => (
+            <a class="prop-card" href={url(`/prop/${p.slug}/`)} style="position:relative;">
+              <div style="position:absolute; top:-10px; left:-10px; background:var(--accent); color:var(--bg); width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800;">{i + 1}</div>
+              <div class="head">
+                <div class="name">{p.name_en}</div>
+                <div class="score">★ {p.review_score}</div>
+              </div>
+              <div class="tagline">{p.tagline}</div>
+              <div class="stats">
+                <div class="stat"><div class="label">最大スプリット</div><div class="value">{maxSplit(p)}%</div></div>
+                <div class="stat"><div class="label">最低料金</div><div class="value">${minFee(p)}</div></div>
+                <div class="stat"><div class="label">日本語</div><div class="value">{p.features.japanese_support ? "対応" : "なし"}</div></div>
+                <div class="stat"><div class="label">出金最短</div><div class="value">{p.min_payout_days}日</div></div>
+              </div>
+              <div class="cta">詳細を見る →</div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="text-align:center;">
+      <p style="color:var(--text-muted); margin-bottom:14px;">他のランキングも見る</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+        {rankings.filter((r) => r.slug !== ranking.slug).map((r) => (
+          <a class="pill" href={url(`/prop/ranking/${r.slug}/`)} style="text-decoration:none;">{r.headline}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

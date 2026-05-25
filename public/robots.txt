@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nishidagonyuya.github.io/prop-fx-navi/sitemap-index.xml

@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import propsData from "../../../data/props.json";
+import { url } from "../../../lib/url";
+
+type Firm = (typeof propsData)[number];
+const firms = (propsData as Firm[]).slice().sort((a, b) => b.review_score - a.review_score);
+
+const pairs: Array<{ a: Firm; b: Firm }> = [];
+for (let i = 0; i < firms.length; i++) {
+  for (let j = i + 1; j < firms.length; j++) {
+    pairs.push({ a: firms[i], b: firms[j] });
+  }
+}
+const topPairs = pairs.slice(0, 30);
+const totalPairs = pairs.length;
+---
+<BaseLayout
+  title="プロップファーム 比較ペア一覧"
+  description={`掲載中の主要プロップファーム同士を1対1で比較。全${totalPairs}ペアの徹底比較ページを揃えています。`}
+>
+  <section class="hero">
+    <div class="container">
+      <h1>プロップファーム<span class="accent"> 1対1 比較</span></h1>
+      <p>気になる業者同士の徹底比較ページを {totalPairs} ペア用意しています。注目ペアを下から、または各社詳細ページの「比較する」リンクからアクセスできます。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>注目の比較ペアTOP30</h2>
+      <div class="prop-grid">
+        {topPairs.map(({ a, b }) => (
+          <a class="prop-card" href={url(`/prop/compare/${a.slug}-vs-${b.slug}/`)}>
+            <div class="head">
+              <div class="name" style="font-size:1.05rem;">{a.name_en} <span style="color:var(--accent);">vs</span> {b.name_en}</div>
+            </div>
+            <div class="tagline">★ {a.review_score} vs ★ {b.review_score}　・　最大スプリット {Math.max(...a.challenge_types.map((c) => c.profit_split_pct))}% / {Math.max(...b.challenge_types.map((c) => c.profit_split_pct))}%</div>
+            <div class="cta">徹底比較を見る →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

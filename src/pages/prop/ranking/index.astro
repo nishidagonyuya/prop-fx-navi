@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { rankings } from "../../../lib/rankings";
+import { url } from "../../../lib/url";
+---
+<BaseLayout
+  title="プロップファーム ランキング 一覧"
+  description="目的別のプロップファームランキング。初心者向け・高スプリット重視・EA可・低予算・日本語対応の5カテゴリで最適な業者を見つけられます。"
+>
+  <section class="hero">
+    <div class="container">
+      <h1>目的別<span class="accent">ランキング</span></h1>
+      <p>あなたのトレードスタイルや条件に合うプロップファームを、5つの切り口で比較できます。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="prop-grid">
+        {rankings.map((r) => (
+          <a class="prop-card" href={url(`/prop/ranking/${r.slug}/`)}>
+            <div class="head"><div class="name">{r.headline}</div></div>
+            <div class="tagline">{r.description}</div>
+            <div class="cta">ランキングを見る →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

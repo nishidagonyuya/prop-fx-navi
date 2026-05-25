@@ -1,12 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import props from "../../data/props.json";
+import { url } from "../../lib/url";
 
 export function getStaticPaths() {
   return props.map((p) => ({ params: { slug: p.slug }, props: { firm: p } }));
 }
 
 const { firm } = Astro.props;
+
+const others = props
+  .filter((p) => p.slug !== firm.slug)
+  .map((p) => ({ p, diff: Math.abs(p.review_score - firm.review_score) }))
+  .sort((a, b) => a.diff - b.diff)
+  .slice(0, 6)
+  .map((x) => x.p);
 
 const featureLabels: Record<string, string> = {
   ea_allowed: "EA・自動売買",
@@ -164,6 +172,26 @@ const jsonLd = {
             最短出金 <strong style="color:var(--text);">{firm.min_payout_days}日</strong> ／ 出金頻度 <strong style="color:var(--text);">{firm.payout_frequency}</strong>
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>{firm.name_en} と他社を比較</h2>
+      <div class="prop-grid">
+        {others.map((o) => {
+          const [a, b] = [firm.slug, o.slug].sort();
+          return (
+            <a class="prop-card" href={url(`/prop/compare/${a}-vs-${b}/`)}>
+              <div class="head">
+                <div class="name" style="font-size:1.05rem;">{firm.name_en} <span style="color:var(--accent);">vs</span> {o.name_en}</div>
+              </div>
+              <div class="tagline">★ {firm.review_score} vs ★ {o.review_score}</div>
+              <div class="cta">徹底比較を見る →</div>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
