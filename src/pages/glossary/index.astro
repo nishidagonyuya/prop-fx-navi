@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import glossary from "../../data/glossary.json";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  name: "プロップファーム用語集",
+  hasDefinedTerm: glossary.map((t) => ({
+    "@type": "DefinedTerm",
+    name: t.term,
+    description: t.def,
+  })),
+};
+---
+<BaseLayout
+  title="プロップファーム用語集（プロフィットスプリット・Max DD・Trailing DD など）"
+  description="プロップファーム検討中に出てくる専門用語をすべて解説。プロフィットスプリット・Max DD・Trailing DD・Refund・Payout・Funded Account など32語を網羅。"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="hero">
+    <div class="container">
+      <h1>プロップファーム<br/><span class="accent">用語集</span></h1>
+      <p>プロップファーム検討中に「これって何？」となる用語を{glossary.length}語まとめました。各規約・チャレンジルールの理解に活用してください。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:880px;">
+      <div style="display:grid; grid-template-columns:1fr; gap:14px;">
+        {glossary.map((t) => (
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px 22px;">
+            <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:8px;">
+              <h2 style="font-size:1.15rem; font-weight:700; margin:0;">{t.term}</h2>
+              <span style="font-size:0.85rem; color:var(--text-muted); font-family:ui-monospace,Menlo,monospace;">{t.en}</span>
+            </div>
+            <p style="color:var(--text-muted); line-height:1.7; margin:0;">{t.def}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

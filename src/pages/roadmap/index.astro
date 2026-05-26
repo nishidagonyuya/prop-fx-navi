@@ -1,0 +1,129 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { url } from "../../lib/url";
+
+const steps = [
+  {
+    phase: "Phase 0",
+    title: "前提：FXの基礎を身につける",
+    duration: "1〜3ヶ月",
+    items: [
+      "国内FX口座（GMOクリック証券等）でデモトレード開始",
+      "テクニカル分析（移動平均線・サポレジ・トレンドライン）を学ぶ",
+      "リスクリワード比1:2以上のトレードを徹底する",
+      "1日のトレード回数を3回以内に絞る練習",
+    ],
+    tip: "FX未経験でいきなりプロップに挑戦するのは料金をドブに捨てる行為。まず実弾なしのデモで「勝てる手法」を作るのが最重要。",
+  },
+  {
+    phase: "Phase 1",
+    title: "実力測定：デモで安定した利益を出す",
+    duration: "2〜3ヶ月",
+    items: [
+      "デモ口座で月+5%以上を3ヶ月連続で達成する",
+      "1日の最大損失を残高の2%以内に抑える",
+      "勝率50%以上 × リスクリワード1:2以上で「期待値プラス」を確認",
+      "取引履歴をExcel/スプレッドシートで全件記録",
+    ],
+    tip: "ここをスキップする人が9割。プロップ突破率がたった7〜10%なのは、ここを飛ばす人が多いから。デモで勝てない手法は本番でも勝てません。",
+  },
+  {
+    phase: "Phase 2",
+    title: "プロップ業者選定",
+    duration: "1〜2週間",
+    items: [
+      "[プロップファームとは](/guide/propfirm-towa/) を読んで仕組みを理解",
+      "[おすすめランキング](/guide/propfirm-osusume/) で候補を3社に絞る",
+      "[Refund制度](/guide/propfirm-refund/) と料金で最終候補を決定",
+      "[日本人向け業者](/guide/propfirm-japanese/) なら Fintokei / FTMO がおすすめ",
+    ],
+    tip: "初挑戦は「日本語サポートあり・設立3年以上・Refundあり」の3条件で絞る。FTMO・Fintokei が鉄板。",
+  },
+  {
+    phase: "Phase 3",
+    title: "初回チャレンジに挑戦",
+    duration: "1〜2ヶ月",
+    items: [
+      "最小サイズ（$10k〜$25k）でチャレンジ購入",
+      "[チャレンジ攻略法10選](/guide/propfirm-challenge-tips/) のルールを徹底",
+      "1日のロスカット上限を「日次MaxDDの50%」に設定",
+      "ニュース発表前後15分は触らない",
+      "利益目標の60%を1週目で取りに行く戦略",
+    ],
+    tip: "1回でクリアできなくても授業料と割り切る。失敗から学んで2回目で突破するのが現実的。",
+  },
+  {
+    phase: "Phase 4",
+    title: "本番口座運用 → 初回出金",
+    duration: "1ヶ月",
+    items: [
+      "Phase 1と同じスタンスでルール厳守",
+      "小さくても初回利益を確定し、出金リクエスト",
+      "出金確認でアカウントの信頼性を確認",
+      "Refundが返金された時点で「実質ゼロコスト挑戦」が完成",
+    ],
+    tip: "本番口座で気が緩んで負けるパターンが多発。チャレンジと同じ慎重さを維持してください。",
+  },
+  {
+    phase: "Phase 5",
+    title: "スケールフェーズ",
+    duration: "継続",
+    items: [
+      "複数業者で並行運用して期待値を倍増",
+      "スプリット重視業者（FundedNext 95%等）へステップアップ",
+      "[出金トラブル体験談](/guide/propfirm-payout-trouble/) を読んで防衛策を学ぶ",
+      "[税金完全ガイド](/guide/propfirm-zeikin/) で確定申告の準備",
+      "年800万超なら法人化検討",
+    ],
+    tip: "ここまで来れば「自己資金で勝負するより効率的にお金を増やせる仕組み」が完成。",
+  },
+];
+---
+<BaseLayout
+  title="プロップファーム 初心者ロードマップ【0からPhase 5まで完全攻略】"
+  description="プロップファーム未経験から本番口座運用まで、6段階のステップ式チェックリスト。各フェーズの所要期間・やること・つまずきポイントまで完全網羅。"
+>
+  <section class="hero">
+    <div class="container">
+      <h1>プロップファーム<br/><span class="accent">初心者ロードマップ</span></h1>
+      <p>FX未経験〜プロップ本番運用まで、何を・いつ・どう進めれば良いかを6つのフェーズで完全ステップ化。各フェーズのチェックリストを順番にクリアすればOK。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:880px;">
+      {steps.map((s, i) => (
+        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:30px; margin-bottom:24px; position:relative;">
+          <div style="position:absolute; top:-12px; left:24px; background:var(--accent); color:var(--bg); padding:4px 14px; border-radius:999px; font-weight:700; font-size:0.85rem; letter-spacing:0.04em;">{s.phase}</div>
+          <h2 style="font-size:1.4rem; font-weight:700; margin-top:8px; margin-bottom:8px;">{s.title}</h2>
+          <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:18px;">⏱ 目安期間: <strong style="color:var(--text);">{s.duration}</strong></div>
+          <div style="margin-bottom:18px;">
+            <strong style="color:var(--accent); font-size:0.85rem; letter-spacing:0.08em;">YOUR CHECKLIST</strong>
+            <ul style="list-style:none; padding:0; margin-top:10px;">
+              {s.items.map((item) => (
+                <li style="padding:8px 0 8px 28px; position:relative; line-height:1.7;" set:html={`<span style="position:absolute; left:0; top:8px; width:18px; height:18px; border:2px solid var(--accent); border-radius:4px;"></span>${item.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')}`} />
+              ))}
+            </ul>
+          </div>
+          <div style="background:var(--bg-soft); border-left:3px solid var(--warn); padding:14px 18px; border-radius:0 8px 8px 0; font-size:0.92rem; color:var(--text-muted);">
+            <strong style="color:var(--warn);">💡 TIP:</strong> {s.tip}
+          </div>
+          {i < steps.length - 1 && (
+            <div style="text-align:center; color:var(--text-muted); margin-top:18px; font-size:1.5rem; line-height:1;">↓</div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px; text-align:center;">
+      <h2 style="font-size:1.5rem; margin-bottom:14px;">Phase 2 の業者選びから始めるなら</h2>
+      <p style="color:var(--text-muted); margin-bottom:24px;">自分に合う業者を3分で見つけられます</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a class="cta-big" href={url("/prop/ranking/")}>目的別ランキング</a>
+        <a class="cta-big" href={url("/prop/")} style="background:var(--card); color:var(--text); border:1px solid var(--accent);">業者一覧</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

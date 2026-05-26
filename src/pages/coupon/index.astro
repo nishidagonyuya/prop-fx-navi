@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import propsData from "../../data/props.json";
+import { url } from "../../lib/url";
+
+type Firm = (typeof propsData)[number];
+
+const firms = propsData as Firm[];
+const couponsFlat = firms.flatMap((f) =>
+  (f.coupons ?? []).map((c) => ({ ...c, firm: f }))
+);
+
+const today = new Date().toISOString().slice(0, 10);
+const active = couponsFlat.filter((c) => !c.expires_at || c.expires_at >= today);
+const totalActive = active.length;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "プロップファーム クーポン・割引コード 一覧",
+  description: `主要プロップファームの最新クーポン${totalActive}件を掲載。`,
+};
+---
+<BaseLayout
+  title={`プロップファーム クーポン・割引コード 一覧【2026年最新】`}
+  description={`FTMO・FundedNext・Fintokei・MyFundedFXなど主要プロップファームの最新クーポンを${totalActive}件掲載。チャレンジ料金を最大30%OFFで購入できる割引コード集。`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="hero">
+    <div class="container">
+      <h1>プロップファーム<br/><span class="accent">クーポン・割引コード一覧</span></h1>
+      <p>チャレンジ料金は1回 $500〜$1,000。少しでも安く始めるためのクーポン・プロモコードをまとめました。日本人トレーダー向けの限定キャンペーンも掲載。</p>
+      <div class="meta">
+        <div><strong>{totalActive}件</strong>掲載中</div>
+        <div><strong>{firms.length}社</strong>から収集</div>
+        <div><strong>毎週</strong>更新</div>
+      </div>
+    </div>
+  </section>
+
+  {active.length === 0 ? (
+    <section class="section">
+      <div class="container" style="max-width:760px; text-align:center;">
+        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:40px;">
+          <h2 style="margin-bottom:14px;">🔄 クーポン情報を更新中です</h2>
+          <p style="color:var(--text-muted); margin-bottom:24px;">
+            各業者の最新キャンペーン・専用クーポンを順次掲載していきます。<br/>
+            先に業者の詳細を確認したい方は下記からどうぞ。
+          </p>
+          <a class="cta-big" href={url("/prop/")}>プロップファーム一覧を見る →</a>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="section">
+      <div class="container">
+        <div class="prop-grid" style="grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));">
+          {active.map((c) => (
+            <div class="prop-card" style="border-color:var(--accent);">
+              <div class="head">
+                <div class="name">{c.firm.name_en}</div>
+                {c.discount_pct && <div class="score">-{c.discount_pct}%</div>}
+              </div>
+              <div class="tagline" style="font-size:0.9rem;">{c.description}</div>
+              <div style="background:var(--bg-soft); padding:14px 18px; border-radius:10px; font-family:ui-monospace,Menlo,monospace; font-size:1.15rem; font-weight:700; letter-spacing:0.08em; color:var(--accent); text-align:center;">{c.code}</div>
+              <div style="font-size:0.82rem; color:var(--text-muted);">
+                {c.badge && <span class="pill" style="margin-right:8px;">{c.badge}</span>}
+                {c.expires_at ? `〜${c.expires_at}まで` : "期限なし"}
+              </div>
+              <a class="cta" href={c.firm.affiliate_url || c.firm.official_url} target="_blank" rel="sponsored noopener">{c.firm.name_en}で使う →</a>
+              <a href={url(`/prop/${c.firm.slug}/`)} style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:-4px;">{c.firm.name_en} の詳細を見る</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <h2 style="font-size:1.5rem; margin-bottom:20px;">クーポン利用の注意点</h2>
+      <ul style="padding-left:1.4em; color:var(--text-muted); line-height:1.9;">
+        <li>クーポンは予告なく終了する場合があります。最新情報は各業者公式サイトで確認してください</li>
+        <li>同じユーザーで複数クーポンの併用は通常不可です</li>
+        <li>Refund（返金）対象のチャレンジに割引適用すると、返金額は割引後の金額になります</li>
+        <li>当サイトのリンク経由で購入された場合、運営者にアフィリエイト報酬が支払われます（読者の負担はありません）</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

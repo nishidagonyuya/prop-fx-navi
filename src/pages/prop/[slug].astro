@@ -74,6 +74,30 @@ const jsonLd = {
     </div>
   </section>
 
+  {firm.coupons && firm.coupons.length > 0 && (
+    <section class="block" style="background:linear-gradient(180deg, rgba(0,212,170,0.06) 0%, transparent 100%);">
+      <div class="container">
+        <h2>💰 {firm.name_en} の最新クーポン</h2>
+        <div class="prop-grid" style="grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));">
+          {firm.coupons.map((c) => (
+            <div class="prop-card" style="border-color:var(--accent);">
+              <div class="head">
+                <div class="name" style="font-size:1rem;">{c.description}</div>
+                {c.discount_pct && <div class="score">-{c.discount_pct}%</div>}
+              </div>
+              <div style="background:var(--bg-soft); padding:14px 18px; border-radius:10px; font-family:ui-monospace,Menlo,monospace; font-size:1.15rem; font-weight:700; letter-spacing:0.08em; color:var(--accent); text-align:center;">{c.code}</div>
+              <div class="tagline" style="font-size:0.85rem;">
+                {c.badge && <span class="pill" style="margin-right:8px;">{c.badge}</span>}
+                {c.expires_at ? `〜${c.expires_at}まで` : "期限なし（恒常）"}
+              </div>
+              <a class="cta" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener">{firm.name_en}でこのコードを使う →</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="block">
     <div class="container">
       <h2>{firm.name_en} の評価サマリー</h2>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import faqs from "../../data/faqs.json";
+
+const categories = [...new Set(faqs.map((f) => f.category))];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"),
+    },
+  })),
+};
+---
+<BaseLayout
+  title="プロップファーム よくある質問（FAQ）"
+  description="プロップファームに関する初心者からの疑問にすべて答えます。基本・始め方・料金・ルール・出金・税金・業者選び・トラブル対策まで20項目以上を網羅。"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="hero">
+    <div class="container">
+      <h1>プロップファーム<br/><span class="accent">よくある質問</span></h1>
+      <p>これからプロップに挑戦する人・既に使ってる人からよく寄せられる疑問にすべて答えます。{faqs.length}項目を {categories.length} カテゴリで整理しました。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:880px;">
+      {categories.map((cat) => (
+        <div style="margin-bottom:50px;">
+          <h2 style="font-size:1.5rem; font-weight:700; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid var(--accent); color:var(--accent);">{cat}</h2>
+          {faqs.filter((f) => f.category === cat).map((f) => (
+            <details style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px 22px; margin-bottom:12px;">
+              <summary style="font-weight:700; cursor:pointer; font-size:1.05rem; line-height:1.5;">Q. {f.q}</summary>
+              <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border); color:var(--text-muted); line-height:1.85;" set:html={f.a.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')} />
+            </details>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
