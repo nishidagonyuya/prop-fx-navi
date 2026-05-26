@@ -1536,7 +1536,16 @@
       "EU系信頼性"
     ],
     "updated_at": "2026-05-25",
-    "coupons": []
+    "coupons": [
+      {
+        "code": "V4tGRj1UQxOqjwn832Vubg",
+        "description": "公式リンク経由で全プラン10%OFF（コード自動適用）",
+        "discount_pct": 10,
+        "expires_at": null,
+        "badge": "恒常",
+        "type": "promo"
+      }
+    ]
   },
   {
     "slug": "pipfarm",
