@@ -20,6 +20,14 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
   <meta name="generator" content={Astro.generator} />
   <meta name="google-site-verification" content="vspcknzdfBrq3vyLsAETonwy1-hwOWIO_Xg5_xwLME0" />
   <meta name="google-site-verification" content="1THrXsxCk_MNEipowwWUfA4V6I3YNTs4jP4DmRzEdt0" />
+  <!-- Google tag (gtag.js) -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-MWW288DV3L"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MWW288DV3L');
+  </script>
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   {canonical && <link rel="canonical" href={canonical} />}
