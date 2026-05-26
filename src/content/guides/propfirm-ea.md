@@ -47,13 +47,13 @@ EA・スキャル・ニュース全OK、加えて **週末ポジ持ち越し可�
 - 推奨理由：**手取り最大・週末ホールド可で多くのEA戦略に対応**
 - → [FundedNext 詳細](/prop/fundednext/)
 
-### 3位：MyFundedFX
+### 3位：FXIFY
 
 EA・スキャル・ニュース全OK。プラン選択肢が業界最多で、EAごとに最適なプランを選べる。
 
 - スプリット：90%
 - 推奨理由：**Instant Funding プランで即EA稼働可能**
-- → [MyFundedFX 詳細](/prop/myfundedfx/)
+- → [FXIFY 詳細](/prop/fxify/)
 
 ### 4位：Fintokei
 

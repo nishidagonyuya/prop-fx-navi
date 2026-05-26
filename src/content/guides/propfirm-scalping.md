@@ -15,7 +15,7 @@ order: 18
 |---|---|---|
 | FTMO | ◯ | 制限なし |
 | FundedNext | ◯ | 制限なし |
-| MyFundedFX | ◯ | 制限なし |
+| FXIFY | ◯ | 制限なし |
 | Fintokei | ◯ | 制限なし |
 | Funding Pips | ◯ | 制限なし |
 | The5%ers | ◯ | ニュース時のみ禁止 |
@@ -60,13 +60,13 @@ order: 18
 
 → [FTMO 詳細](/prop/ftmo/)
 
-### 3位：MyFundedFX（★4.4）
+### 3位：FXIFY（★4.4）
 
 - スキャル制限：完全なし
 - スプリット最大90%
 - Match-Trader対応で約定良好
 
-→ [MyFundedFX 詳細](/prop/myfundedfx/)
+→ [FXIFY 詳細](/prop/fxify/)
 
 ### 4位：Funding Pips（★4.4）
 
@@ -96,7 +96,7 @@ order: 18
 | Match-Trader | 高 | ○ |
 | DXtrade | 中 | △ |
 
-**スキャル特化なら cTrader 一択**。FundedNext・MyFundedFX・Funding Pips が対応。
+**スキャル特化なら cTrader 一択**。FundedNext・FXIFY・Funding Pips が対応。
 
 ## スキャル戦略でチャレンジを突破するコツ
 
@@ -129,7 +129,7 @@ City Traders Imperium・Lux Trading Firm 等のスキャル禁止業者を使う
 ## よくある質問
 
 ### Q. 1分足スキャルは可能？
-A. スキャル可業者（FTMO・FundedNext・MyFundedFX等）なら問題なし。禁止業者では微妙なので避ける。
+A. スキャル可業者（FTMO・FundedNext・FXIFY等）なら問題なし。禁止業者では微妙なので避ける。
 
 ### Q. 自動売買EAでのスキャルは？
 A. EA可業者であれば可能。ただし[EA可業者の比較記事](/guide/propfirm-ea/) で別途確認。
@@ -148,7 +148,7 @@ A. 例：$100k口座でスキャル月+5%（$5,000）→ FundedNextスプリッ�
 プロップでスキャルピングは：
 
 - **8割の業者で可能**
-- **特化業者：FundedNext・FTMO・MyFundedFX・Funding Pips・Fintokei**
+- **特化業者：FundedNext・FTMO・FXIFY・Funding Pips・Fintokei**
 - **cTrader対応業者を選ぶと約定速度有利**
 - **City Traders Imperium・Lux Trading Firm は完全禁止なので注意**
 

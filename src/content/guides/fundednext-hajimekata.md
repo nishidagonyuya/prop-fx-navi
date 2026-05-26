@@ -160,7 +160,7 @@ FTMO（2015年〜）より経験年数が短い。
 ## よくある質問
 
 ### Q. Express 1-Step と Stellar 2-Step どっちが良い？
-A. **Stellar 2-Step 推奨**。Express はスプリット60%と低く、Refundもなし。1-Step派なら他社（FTMO・MyFundedFX）を検討すべき。
+A. **Stellar 2-Step 推奨**。Express はスプリット60%と低く、Refundもなし。1-Step派なら他社（FTMO・FXIFY）を検討すべき。
 
 ### Q. クレカ決済できないときは？
 A. PayPal または Crypto（USDT）を試してください。Wiseカードも通る場合があります。

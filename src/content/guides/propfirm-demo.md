@@ -28,7 +28,7 @@ order: 17
 | FTMO | × | ◎（業界唯一） |
 | FundedNext | × | × |
 | Fintokei | × | △（期間限定） |
-| MyFundedFX | × | × |
+| FXIFY | × | × |
 | Funding Pips | × | × |
 
 ## 代替策1：通常FX口座のデモで手法を作る

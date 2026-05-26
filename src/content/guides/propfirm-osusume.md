@@ -46,14 +46,14 @@ order: 2
 - 日本語：×
 - → [FundedNext 詳細を見る](/prop/fundednext/)
 
-### 4位：MyFundedFX（★4.4）
+### 4位：FXIFY（★4.4）
 
 1-Step／2-Step／Instant Funding の **全方式を選べる柔軟性**が強み。スプリット90%。
 
 - 最低料金：$449
 - スプリット：90%
 - 日本語：×
-- → [MyFundedFX 詳細を見る](/prop/myfundedfx/)
+- → [FXIFY 詳細を見る](/prop/fxify/)
 
 ### 5位：Funding Pips（★4.4）
 
@@ -79,6 +79,6 @@ order: 2
 
 プロップ選びは「自分のスタイルに合うかどうか」が9割。
 
-迷ったら **FTMO（信頼性）** または **Fintokei（日本語）** から始めるのが最も失敗しにくい選択です。慣れてきたら **FundedNext** や **MyFundedFX** で手取りを最大化していくのが王道ルートです。
+迷ったら **FTMO（信頼性）** または **Fintokei（日本語）** から始めるのが最も失敗しにくい選択です。慣れてきたら **FundedNext** や **FXIFY** で手取りを最大化していくのが王道ルートです。
 
 → もっと詳しく比較するなら [プロップファーム比較](/prop/compare/) で1対1の詳細比較ができます。

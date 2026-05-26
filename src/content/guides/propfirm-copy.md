@@ -16,10 +16,10 @@ order: 19
 | The5%ers | ◯ | 自社プラットフォーム内のみ |
 | FXIFY | ◯ | 設定可 |
 | Goat Funded Trader | ◯ | 制限あり |
-| Fundera | ◯ | 新興・要確認 |
+| Goat Funded Trader | ◯ | 新興・要確認 |
 | **FTMO** | × | コピー禁止 |
 | **FundedNext** | × | コピー禁止 |
-| **MyFundedFX** | × | コピー禁止 |
+| **FXIFY** | × | コピー禁止 |
 | **Fintokei** | × | コピー禁止 |
 | **Funding Pips** | × | コピー禁止 |
 
@@ -127,7 +127,7 @@ A. 取引履歴・自分の分析記録・スクリーンショットなどを�
 
 プロップでコピートレード：
 
-- **主要大手（FTMO・FundedNext・MyFundedFX等）は全社禁止**
+- **主要大手（FTMO・FundedNext・FXIFY等）は全社禁止**
 - **対応業者は The5%ers・FXIFY・Goat Funded Trader 等**
 - **「バレないだろう」は通用しない**
 - **本格的に稼ぐなら自力トレード推奨**

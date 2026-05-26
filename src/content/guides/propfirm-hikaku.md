@@ -39,7 +39,7 @@ order: 11
 | 2 | FundedNext | $549 | 95% | 5日 | × | 2022年 |
 | 3 | Fintokei | $549 | 80% | 7日 | ◎ | 2023年 |
 | 4 | Apex Trader Funding | $167 | 100% | 8日 | × | 2021年 |
-| 5 | MyFundedFX | $449 | 90% | 7日 | × | 2022年 |
+| 5 | FXIFY | $449 | 90% | 7日 | × | 2022年 |
 | 6 | Funding Pips | $525 | 80% | **3日** | × | 2022年 |
 | 7 | Topstep | $165 | 100% | 8日 | × | 2012年 |
 | 8 | E8 Markets | $528 | 80% | 7日 | × | 2021年 |
@@ -62,14 +62,14 @@ order: 11
 
 1. **The5%ers Bootcamp 100%**（プラン限定）
 2. **FundedNext Stellar 95%**
-3. **FXIFY / MyFundedFX 90%**
+3. **FXIFY / FXIFY 90%**
 
 → 詳細は[高プロフィットスプリットランキング](/prop/ranking/high-split/)
 
 ### 自由度最優先：取引ルール柔軟TOP3
 
 1. **FundedNext**（EA・スキャル・ニュース・週末・Swap Free 全部OK）
-2. **MyFundedFX**（同条件）
+2. **FXIFY**（同条件）
 3. **Funding Pips**（同条件）
 
 → 詳細は[EA・自動売買OKのプロップ比較](/guide/propfirm-ea/)
@@ -95,7 +95,7 @@ order: 11
 | 優先 | 業者 | 理由 |
 |---|---|---|
 | 1 | FundedNext | スプリット95% |
-| 2 | MyFundedFX | スプリット90%+プラン柔軟 |
+| 2 | FXIFY | スプリット90%+プラン柔軟 |
 | 3 | FXIFY | アドオンで125%まで可能 |
 
 ### タイプC：EA運用したい
@@ -103,7 +103,7 @@ order: 11
 | 優先 | 業者 | 理由 |
 |---|---|---|
 | 1 | FundedNext | 全条件OK |
-| 2 | MyFundedFX | 全条件OK |
+| 2 | FXIFY | 全条件OK |
 | 3 | Funding Pips | 全条件OK+出金最速 |
 
 ### タイプD：Futures派

@@ -26,7 +26,7 @@ order: 9
 |---|---|---|
 | [FTMO](/prop/ftmo/) | ◯ | 初回スプリット時 |
 | [FundedNext](/prop/fundednext/) | ◯ | 2-Step 合格・初回スプリット |
-| [MyFundedFX](/prop/myfundedfx/) | ◯ | 2-Step Evaluation のみ |
+| [FXIFY](/prop/fxify/) | ◯ | 2-Step Evaluation のみ |
 | [Fintokei](/prop/fintokei/) | ◯ | TheStandard 合格時 |
 | [Funding Pips](/prop/fundingpips/) | ◯ | 初回スプリット |
 | [FXIFY](/prop/fxify/) | ◯ | 2-Phase 合格 |
@@ -70,13 +70,13 @@ Refundあり前提で選ぶよりも、**「Refundあり×スプリット高い�
 ## おすすめの選び方
 
 1. **Refundあり + 信頼性 重視** → [FTMO](/prop/ftmo/) または [Fintokei](/prop/fintokei/)
-2. **Refundあり + スプリット最大化** → [FundedNext](/prop/fundednext/) または [MyFundedFX](/prop/myfundedfx/)
+2. **Refundあり + スプリット最大化** → [FundedNext](/prop/fundednext/) または [FXIFY](/prop/fxify/)
 3. **Refundあり + 低料金** → [Funding Pips](/prop/fundingpips/) または [Goat Funded Trader](/prop/goat-funded-trader/)
 
 ## まとめ
 
 - **Refund = 初回利益でチャレンジ料金が返金される制度**
-- 主要老舗プロップ（FTMO/FundedNext/Fintokei/MyFundedFX）は基本Refund対応
+- 主要老舗プロップ（FTMO/FundedNext/Fintokei/FXIFY）は基本Refund対応
 - ただし**プラン選択でRefund条件が変わる**ので契約前に必ず確認
 - Refund金額より **スプリット率・出金スピード** の方が長期的にインパクト大
 
