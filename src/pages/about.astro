@@ -1,24 +1,112 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { url } from "../lib/url";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "プロップFXナビ",
+  alternateName: "Prop FX Navi",
+  url: "https://propfxnavi.com/",
+  parentOrganization: {
+    "@type": "Organization",
+    name: "株式会社KAIZEN",
+    url: "https://miraijob.jp/",
+  },
+  founder: {
+    "@type": "Person",
+    name: "宮城ガイ",
+    jobTitle: "代表取締役・現役運用マネージャー",
+  },
+};
 ---
-<BaseLayout title="運営者情報" description="プロップFXナビの運営者情報・サイトポリシーについて">
+<BaseLayout
+  title="運営者情報｜株式会社KAIZEN・代表 宮城ガイ"
+  description="プロップFXナビは株式会社KAIZEN（代表：宮城ガイ／現役運用マネージャー・国際認定テクニカルアナリスト）が運営する、日本人トレーダー向けのプロップファーム比較メディアです。"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
   <section class="hero">
     <div class="container">
-      <h1>運営者情報</h1>
+      <h1>運営者<span class="accent">情報</span></h1>
+      <p>プロップFXナビは、株式会社KAIZEN が運営する独立系プロップファーム比較メディアです。</p>
     </div>
   </section>
+
   <section class="section">
-    <div class="container" style="max-width:760px;">
-      <h2>サイトの目的</h2>
-      <p>プロップFXナビは、日本人FXトレーダーが自分に合うプロップファームを公正に選べるよう、各社のルール・料金・出金条件を独立に比較するデータベースサイトです。</p>
-      <h2 style="margin-top:40px;">編集方針</h2>
-      <ul style="padding-left:1.4em;">
-        <li>掲載スコアはアフィリエイト報酬額に左右されません</li>
-        <li>各社の公式サイト・公式T&amp;C・実トレーダーレビューを一次ソースとして参照</li>
-        <li>変更は2026年5月以降、月1回以上の頻度で見直し</li>
+    <div class="container" style="max-width:880px;">
+      <h2>運営会社</h2>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:30px; margin:20px 0;">
+        <table style="width:100%; border-collapse:collapse;">
+          <tbody>
+            <tr><td style="padding:10px 0; color:var(--text-muted); width:30%;">運営会社</td><td style="padding:10px 0;"><strong>株式会社KAIZEN</strong></td></tr>
+            <tr><td style="padding:10px 0; color:var(--text-muted);">代表者</td><td style="padding:10px 0;">宮城ガイ</td></tr>
+            <tr><td style="padding:10px 0; color:var(--text-muted);">事業内容</td><td style="padding:10px 0;">FXスクール運営・書籍出版・金融情報メディア運営</td></tr>
+            <tr><td style="padding:10px 0; color:var(--text-muted);">公式サイト</td><td style="padding:10px 0;"><a href="https://miraijob.jp/" target="_blank" rel="noopener">miraijob.jp</a></td></tr>
+            <tr><td style="padding:10px 0; color:var(--text-muted);">メディア実績</td><td style="padding:10px 0;"><a href="https://miraijob.jp/media" target="_blank" rel="noopener">miraijob.jp/media</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>詳細は <a href={url("/guide/kaizen-corp/")}>株式会社KAIZEN とは</a> を参照してください。</p>
+
+      <h2 style="margin-top:50px;">代表者プロフィール</h2>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:30px; margin:20px 0;">
+        <h3 style="font-size:1.3rem; margin-bottom:14px;">宮城ガイ（みやぎ がい）</h3>
+        <ul style="padding-left:1.4em; line-height:1.9;">
+          <li>株式会社KAIZEN 代表</li>
+          <li><strong>現役の運用マネージャー</strong>（運用会社で会社資金を運用）</li>
+          <li><strong>国際認定テクニカルアナリスト</strong>資格保有</li>
+          <li>FXスクール「<a href={url("/guide/university-of-money/")}>University of Money</a>」代表</li>
+          <li>Amazon Kindle「ガイ式FX 7つのシリーズ」全3巻 著者</li>
+        </ul>
+        <p style="margin-top:18px;">詳細は <a href={url("/guide/miyagi-gai-profile/")}>宮城ガイ プロフィール</a> へ。</p>
+      </div>
+
+      <h2 style="margin-top:50px;">関連事業</h2>
+      <div class="prop-grid" style="grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));">
+        <a class="prop-card" href={url("/guide/university-of-money/")}>
+          <div class="head"><div class="name">University of Money</div></div>
+          <div class="tagline">個人投資家向けFXスクール。1,000名以上の受講実績・プロップ合格者多数輩出。</div>
+          <div class="cta">詳細を見る →</div>
+        </a>
+        <a class="prop-card" href={url("/guide/kaizen-corp/")}>
+          <div class="head"><div class="name">株式会社KAIZEN</div></div>
+          <div class="tagline">運営母体。TOKYO MX・NewsPicks 等の主要メディアに掲載実績多数。</div>
+          <div class="cta">詳細を見る →</div>
+        </a>
+        <a class="prop-card" href={url("/guide/miyagi-gai-profile/")}>
+          <div class="head"><div class="name">宮城ガイ プロフィール</div></div>
+          <div class="tagline">国際認定テクニカルアナリスト・現役運用マネージャー。</div>
+          <div class="cta">詳細を見る →</div>
+        </a>
+      </div>
+
+      <h2 style="margin-top:50px;">メディア掲載実績（運営会社）</h2>
+      <ul style="padding-left:1.4em; line-height:1.9;">
+        <li><strong>TOKYO MX「カンニング竹山のイチバン研究所」</strong>放送出演</li>
+        <li><strong>NewsPicks</strong>（経済ソーシャルメディア）公式掲載</li>
+        <li><strong>THE HUMAN STORY</strong>（挑戦者インタビューメディア）掲載</li>
       </ul>
-      <h2 style="margin-top:40px;">お問い合わせ</h2>
-      <p>掲載内容に誤りがあった場合や、新規プロップファームの追加リクエストはお問い合わせフォームよりご連絡ください。</p>
+
+      <h2 style="margin-top:50px;">社会貢献</h2>
+      <p>株式会社KAIZEN は、カンボジアの学校・孤児院への寄付活動を継続実施しています。</p>
+
+      <h2 style="margin-top:50px;">編集方針</h2>
+      <ul style="padding-left:1.4em; line-height:1.9;">
+        <li><strong>独立性</strong>：掲載スコアはアフィリエイト報酬額に左右されません</li>
+        <li><strong>一次ソース重視</strong>：各社の公式サイト・公式T&amp;C・実トレーダーレビューを参照</li>
+        <li><strong>定期更新</strong>：月1回以上の頻度でデータ見直し</li>
+        <li><strong>透明性</strong>：運営者情報・メディア実績を公開</li>
+      </ul>
+
+      <h2 style="margin-top:50px;">広告開示</h2>
+      <p>当サイトは一部のプロップファーム業者とアフィリエイト契約を結んでおり、当サイト経由で申込が発生した場合、運営者に報酬が支払われる場合があります。ただし、報酬額の有無や金額の大小は<strong>レビュー内容・評価スコアに一切影響しません</strong>。読者の最善の選択を独立した立場で支援することを最優先しています。</p>
+
+      <h2 style="margin-top:50px;">免責事項</h2>
+      <p>掲載情報は記事公開時点のものです。各業者の料金・ルールは変更される場合があるため、最終決定の前に必ず公式サイトで最新情報を確認してください。当サイトの情報による損失について、運営者は責任を負いません。</p>
+
+      <h2 style="margin-top:50px;">お問い合わせ</h2>
+      <p>掲載内容に誤りがあった場合・新規プロップファームの追加リクエスト・取材・寄稿のご相談は、<a href="https://miraijob.jp/" target="_blank" rel="noopener">株式会社KAIZEN公式サイト</a>のお問い合わせフォームよりご連絡ください。</p>
     </div>
   </section>
 </BaseLayout>

@@ -42,13 +42,14 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
     <div class="container">
       <a href={url("/")} class="logo">プロップ<span>FXナビ</span></a>
       <nav>
-        <a href={url("/prop/")}>プロップ一覧</a>
+        <a href={url("/prop/")}>一覧</a>
         <a href={url("/prop/ranking/")}>ランキング</a>
         <a href={url("/prop/compare/")}>比較</a>
         <a href={url("/coupon/")}>クーポン</a>
         <a href={url("/guide/")}>ガイド</a>
         <a href={url("/roadmap/")}>始め方</a>
         <a href={url("/faq/")}>FAQ</a>
+        <a href={url("/about/")}>運営者</a>
       </nav>
     </div>
   </header>
@@ -59,11 +60,14 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
     <div class="container">
       <div class="links">
         <a href={url("/about/")}>運営者情報</a>
-        <a href={url("/disclosure/")}>広告開示</a>
-        <a href={url("/privacy/")}>プライバシーポリシー</a>
-        <a href={url("/contact/")}>お問い合わせ</a>
+        <a href={url("/guide/kaizen-corp/")}>株式会社KAIZEN</a>
+        <a href={url("/guide/miyagi-gai-profile/")}>宮城ガイ</a>
+        <a href={url("/guide/university-of-money/")}>University of Money</a>
       </div>
-      <div>&copy; 2026 プロップFXナビ. 当サイトはアフィリエイトプログラムに参加しています.</div>
+      <div style="margin-top:14px; line-height:1.7;">
+        運営：<strong style="color:var(--text);">株式会社KAIZEN</strong>（代表：宮城ガイ／<a href="https://miraijob.jp/" target="_blank" rel="noopener">miraijob.jp</a>）<br/>
+        <span style="font-size:0.82rem;">&copy; 2026 プロップFXナビ. 当サイトはアフィリエイトプログラムに参加しています.</span>
+      </div>
     </div>
   </footer>
 </body>
