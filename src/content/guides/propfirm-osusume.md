@@ -26,7 +26,7 @@ order: 2
 - 最低料金：$540（$100k口座）
 - スプリット：80%
 - 日本語：◯（完全対応）
-- → [FTMO 詳細を見る](/prop-fx-navi/prop/ftmo/)
+- → [FTMO 詳細を見る](/prop/ftmo/)
 
 ### 2位：Fintokei（★4.5）
 
@@ -35,7 +35,7 @@ order: 2
 - 最低料金：$549（$50k Instant）
 - スプリット：80%
 - 日本語：◎（運営母体が日本市場注力）
-- → [Fintokei 詳細を見る](/prop-fx-navi/prop/fintokei/)
+- → [Fintokei 詳細を見る](/prop/fintokei/)
 
 ### 3位：FundedNext（★4.5）
 
@@ -44,7 +44,7 @@ order: 2
 - 最低料金：$549
 - スプリット：最大95%
 - 日本語：×
-- → [FundedNext 詳細を見る](/prop-fx-navi/prop/fundednext/)
+- → [FundedNext 詳細を見る](/prop/fundednext/)
 
 ### 4位：MyFundedFX（★4.4）
 
@@ -53,7 +53,7 @@ order: 2
 - 最低料金：$449
 - スプリット：90%
 - 日本語：×
-- → [MyFundedFX 詳細を見る](/prop-fx-navi/prop/myfundedfx/)
+- → [MyFundedFX 詳細を見る](/prop/myfundedfx/)
 
 ### 5位：Funding Pips（★4.4）
 
@@ -62,7 +62,7 @@ order: 2
 - 最低料金：$525
 - スプリット：80%
 - 日本語：×
-- → [Funding Pips 詳細を見る](/prop-fx-navi/prop/fundingpips/)
+- → [Funding Pips 詳細を見る](/prop/fundingpips/)
 
 ## タイプ別おすすめ
 
@@ -81,4 +81,4 @@ order: 2
 
 迷ったら **FTMO（信頼性）** または **Fintokei（日本語）** から始めるのが最も失敗しにくい選択です。慣れてきたら **FundedNext** や **MyFundedFX** で手取りを最大化していくのが王道ルートです。
 
-→ もっと詳しく比較するなら [プロップファーム比較](/prop-fx-navi/prop/compare/) で1対1の詳細比較ができます。
+→ もっと詳しく比較するなら [プロップファーム比較](/prop/compare/) で1対1の詳細比較ができます。

@@ -44,8 +44,8 @@ order: 6
 
 **対策**：
 - 出金実績の口コミ（Trustpilot・Reddit）を確認
-- 老舗業者（[FTMO](/prop-fx-navi/prop/ftmo/)・[Topstep](/prop-fx-navi/prop/topstep/)）は実績の信頼性が高い
-- 最短出金重視なら [Funding Pips](/prop-fx-navi/prop/fundingpips/)（最短3日）
+- 老舗業者（[FTMO](/prop/ftmo/)・[Topstep](/prop/topstep/)）は実績の信頼性が高い
+- 最短出金重視なら [Funding Pips](/prop/fundingpips/)（最短3日）
 
 ### 5. プロップ会社の倒産・夜逃げ
 
@@ -53,7 +53,7 @@ order: 6
 
 **対策**：
 - 設立年・累計支払額・運営母体を必ず確認
-- 創業から5年以上経過した老舗を選ぶ（[FTMO](/prop-fx-navi/prop/ftmo/)・[The5%ers](/prop-fx-navi/prop/the5ers/)・[Audacity Capital](/prop-fx-navi/prop/audacity-capital/)など）
+- 創業から5年以上経過した老舗を選ぶ（[FTMO](/prop/ftmo/)・[The5%ers](/prop/the5ers/)・[Audacity Capital](/prop/audacity-capital/)など）
 - 一つのプロップに大口資金を集中させない
 
 ## トラブル回避のチェックリスト
@@ -72,10 +72,10 @@ order: 6
 
 各プロップの公式サイトには「Payout Hall of Fame」「Latest Payouts」といった支払実績ページがあることが多いです。これがリアルタイム更新されているかをチェック。
 
-- **[FTMO](/prop-fx-navi/prop/ftmo/)**：累計$300M+
-- **[Apex Trader Funding](/prop-fx-navi/prop/apex-trader-funding/)**：累計$350M+
-- **[FundedNext](/prop-fx-navi/prop/fundednext/)**：累計$200M+
-- **[Topstep](/prop-fx-navi/prop/topstep/)**：累計$200M+
+- **[FTMO](/prop/ftmo/)**：累計$300M+
+- **[Apex Trader Funding](/prop/apex-trader-funding/)**：累計$350M+
+- **[FundedNext](/prop/fundednext/)**：累計$200M+
+- **[Topstep](/prop/topstep/)**：累計$200M+
 
 これらの数字が**毎月数百万ドルずつ増えている**プロップは、信頼性が高い証拠です。
 
@@ -88,4 +88,4 @@ order: 6
 
 これらを守れば、出金トラブルに遭う確率は大幅に下がります。
 
-→ 出金実績の高い信頼性ある業者から選ぶなら [プロップファーム一覧](/prop-fx-navi/prop/) からどうぞ。
+→ 出金実績の高い信頼性ある業者から選ぶなら [プロップファーム一覧](/prop/) からどうぞ。

@@ -24,13 +24,13 @@ order: 9
 
 | プロップ | 1回目で返金 | 条件 |
 |---|---|---|
-| [FTMO](/prop-fx-navi/prop/ftmo/) | ◯ | 初回スプリット時 |
-| [FundedNext](/prop-fx-navi/prop/fundednext/) | ◯ | 2-Step 合格・初回スプリット |
-| [MyFundedFX](/prop-fx-navi/prop/myfundedfx/) | ◯ | 2-Step Evaluation のみ |
-| [Fintokei](/prop-fx-navi/prop/fintokei/) | ◯ | TheStandard 合格時 |
-| [Funding Pips](/prop-fx-navi/prop/fundingpips/) | ◯ | 初回スプリット |
-| [FXIFY](/prop-fx-navi/prop/fxify/) | ◯ | 2-Phase 合格 |
-| [The5%ers](/prop-fx-navi/prop/the5ers/) | ◯ | Hyper Growth |
+| [FTMO](/prop/ftmo/) | ◯ | 初回スプリット時 |
+| [FundedNext](/prop/fundednext/) | ◯ | 2-Step 合格・初回スプリット |
+| [MyFundedFX](/prop/myfundedfx/) | ◯ | 2-Step Evaluation のみ |
+| [Fintokei](/prop/fintokei/) | ◯ | TheStandard 合格時 |
+| [Funding Pips](/prop/fundingpips/) | ◯ | 初回スプリット |
+| [FXIFY](/prop/fxify/) | ◯ | 2-Phase 合格 |
+| [The5%ers](/prop/the5ers/) | ◯ | Hyper Growth |
 
 ### Refundなし（または条件厳しい）プロップ
 
@@ -69,9 +69,9 @@ Refundあり前提で選ぶよりも、**「Refundあり×スプリット高い�
 
 ## おすすめの選び方
 
-1. **Refundあり + 信頼性 重視** → [FTMO](/prop-fx-navi/prop/ftmo/) または [Fintokei](/prop-fx-navi/prop/fintokei/)
-2. **Refundあり + スプリット最大化** → [FundedNext](/prop-fx-navi/prop/fundednext/) または [MyFundedFX](/prop-fx-navi/prop/myfundedfx/)
-3. **Refundあり + 低料金** → [Funding Pips](/prop-fx-navi/prop/fundingpips/) または [Goat Funded Trader](/prop-fx-navi/prop/goat-funded-trader/)
+1. **Refundあり + 信頼性 重視** → [FTMO](/prop/ftmo/) または [Fintokei](/prop/fintokei/)
+2. **Refundあり + スプリット最大化** → [FundedNext](/prop/fundednext/) または [MyFundedFX](/prop/myfundedfx/)
+3. **Refundあり + 低料金** → [Funding Pips](/prop/fundingpips/) または [Goat Funded Trader](/prop/goat-funded-trader/)
 
 ## まとめ
 
@@ -80,4 +80,4 @@ Refundあり前提で選ぶよりも、**「Refundあり×スプリット高い�
 - ただし**プラン選択でRefund条件が変わる**ので契約前に必ず確認
 - Refund金額より **スプリット率・出金スピード** の方が長期的にインパクト大
 
-→ 全業者の料金とRefund対応を一覧で比較するなら [プロップファーム一覧](/prop-fx-navi/prop/) からどうぞ。
+→ 全業者の料金とRefund対応を一覧で比較するなら [プロップファーム一覧](/prop/) からどうぞ。

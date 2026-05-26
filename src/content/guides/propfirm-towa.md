@@ -42,10 +42,10 @@ order: 1
 
 世界的に知名度の高い主要業者は以下の通りです。
 
-- **[FTMO](/prop-fx-navi/prop/ftmo/)**：業界最大手、日本語サポートあり
-- **[FundedNext](/prop-fx-navi/prop/fundednext/)**：最大95%スプリットの新世代
-- **[Fintokei](/prop-fx-navi/prop/fintokei/)**：日本人向け完全日本語対応
-- **[The5%ers](/prop-fx-navi/prop/the5ers/)**：スイングトレード派向け老舗
+- **[FTMO](/prop/ftmo/)**：業界最大手、日本語サポートあり
+- **[FundedNext](/prop/fundednext/)**：最大95%スプリットの新世代
+- **[Fintokei](/prop/fintokei/)**：日本人向け完全日本語対応
+- **[The5%ers](/prop/the5ers/)**：スイングトレード派向け老舗
 
 ## まずどう始めればいい？
 
@@ -58,4 +58,4 @@ order: 1
 
 プロップファームは「FXの実力を換金する仕組み」です。手法と資金管理が固まっていれば、自己資金で勝負するより遥かに効率的にお金を増やせます。
 
-→ 自分に合うプロップファームを探すなら [プロップファーム一覧](/prop-fx-navi/prop/) または [目的別ランキング](/prop-fx-navi/prop/ranking/) からどうぞ。
+→ 自分に合うプロップファームを探すなら [プロップファーム一覧](/prop/) または [目的別ランキング](/prop/ranking/) からどうぞ。

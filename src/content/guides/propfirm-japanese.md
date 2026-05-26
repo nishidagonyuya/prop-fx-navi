@@ -32,7 +32,7 @@ order: 7
 
 **おすすめポイント**：英語の不安が一切なく、日本人サポートチームに直接問い合わせ可能。Purple Trading の信頼性が母体になっているため、新興プロップの不安もない。
 
-→ [Fintokei 詳細を見る](/prop-fx-navi/prop/fintokei/)
+→ [Fintokei 詳細を見る](/prop/fintokei/)
 
 ### 2位：FTMO
 
@@ -47,7 +47,7 @@ order: 7
 | 最低料金 | $540 |
 | 累計支払額 | $300M+ |
 
-→ [FTMO 詳細を見る](/prop-fx-navi/prop/ftmo/)
+→ [FTMO 詳細を見る](/prop/ftmo/)
 
 ### 3位：FundedNext（日本語非対応だが選ぶ価値あり）
 
@@ -60,13 +60,13 @@ order: 7
 | スプリット | 最大95% |
 | 最低料金 | $549 |
 
-→ [FundedNext 詳細を見る](/prop-fx-navi/prop/fundednext/)
+→ [FundedNext 詳細を見る](/prop/fundednext/)
 
 ## 日本人が直面しやすい問題と対策
 
 ### 問題1：英語の利用規約が読めない
 
-→ **対策**：[Fintokei](/prop-fx-navi/prop/fintokei/) を選ぶか、[FTMO](/prop-fx-navi/prop/ftmo/) のヘルプセンター日本語版を活用。Google翻訳でも8割程度の精度で読めます。
+→ **対策**：[Fintokei](/prop/fintokei/) を選ぶか、[FTMO](/prop/ftmo/) のヘルプセンター日本語版を活用。Google翻訳でも8割程度の精度で読めます。
 
 ### 問題2：日本の銀行への直接送金ができない
 
@@ -78,7 +78,7 @@ order: 7
 
 ### 問題4：海外プロップの利益は税務上どう扱われる？
 
-→ **対策**：「総合課税の雑所得」が原則。詳しくは [プロップファーム 税金完全ガイド](/prop-fx-navi/guide/propfirm-zeikin/) を参照。
+→ **対策**：「総合課税の雑所得」が原則。詳しくは [プロップファーム 税金完全ガイド](/guide/propfirm-zeikin/) を参照。
 
 ## 日本語サポート vs スプリット最大化 ― 最終判断軸
 
@@ -90,4 +90,4 @@ order: 7
 
 迷ったら **Fintokei → FTMO → FundedNext** の順で試すのが王道。それぞれ違う強みがあるので、複数並行して使うのも全然アリです。
 
-→ [日本語対応プロップ ランキング](/prop-fx-navi/prop/ranking/japanese/) もチェックしてみてください。
+→ [日本語対応プロップ ランキング](/prop/ranking/japanese/) もチェックしてみてください。

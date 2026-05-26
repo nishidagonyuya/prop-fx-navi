@@ -31,7 +31,7 @@ order: 3
 | 日本語サポート | あり |
 | 推奨プラットフォーム | MT4 / MT5 / cTrader / DXtrade |
 
-→ [FTMO 詳細ページを見る](/prop-fx-navi/prop/ftmo/)
+→ [FTMO 詳細ページを見る](/prop/ftmo/)
 
 ## 安全性の根拠
 
@@ -76,9 +76,9 @@ FTMOのチャレンジルールはサイト上で全て明文化されており�
 
 ## FTMOと相性が悪いトレーダー像
 
-- **手取りスプリット90%以上を求める**（→ [FundedNext](/prop-fx-navi/prop/fundednext/) 推奨）
+- **手取りスプリット90%以上を求める**（→ [FundedNext](/prop/fundednext/) 推奨）
 - **週末ポジション持ち越しが必須**（FTMOは禁止）
-- **出金スピード最短重視**（→ [Funding Pips](/prop-fx-navi/prop/fundingpips/) 推奨）
+- **出金スピード最短重視**（→ [Funding Pips](/prop/fundingpips/) 推奨）
 
 ## 結論
 
@@ -90,6 +90,6 @@ FTMOのチャレンジルールはサイト上で全て明文化されており�
 
 初挑戦のプロップファーム業者を1社選ぶなら、FTMOは依然として最有力候補です。
 
-→ [FTMO 詳細・最新料金を見る](/prop-fx-navi/prop/ftmo/)
-→ [FTMO vs FundedNext 徹底比較](/prop-fx-navi/prop/compare/ftmo-vs-fundednext/)
-→ [FTMO vs Fintokei 徹底比較](/prop-fx-navi/prop/compare/ftmo-vs-fintokei/)
+→ [FTMO 詳細・最新料金を見る](/prop/ftmo/)
+→ [FTMO vs FundedNext 徹底比較](/prop/compare/ftmo-vs-fundednext/)
+→ [FTMO vs Fintokei 徹底比較](/prop/compare/ftmo-vs-fintokei/)

@@ -37,7 +37,7 @@ EA・スキャル・ニュース全てOKの王道。EA運用者の最大ユー�
 - スプリット：80%
 - 日本語：◯
 - 推奨理由：**EA運用実績データが豊富、トラブル少ない**
-- → [FTMO 詳細](/prop-fx-navi/prop/ftmo/)
+- → [FTMO 詳細](/prop/ftmo/)
 
 ### 2位：FundedNext
 
@@ -45,7 +45,7 @@ EA・スキャル・ニュース全OK、加えて **週末ポジ持ち越し可�
 
 - スプリット：最大95%
 - 推奨理由：**手取り最大・週末ホールド可で多くのEA戦略に対応**
-- → [FundedNext 詳細](/prop-fx-navi/prop/fundednext/)
+- → [FundedNext 詳細](/prop/fundednext/)
 
 ### 3位：MyFundedFX
 
@@ -53,7 +53,7 @@ EA・スキャル・ニュース全OK。プラン選択肢が業界最多で、E
 
 - スプリット：90%
 - 推奨理由：**Instant Funding プランで即EA稼働可能**
-- → [MyFundedFX 詳細](/prop-fx-navi/prop/myfundedfx/)
+- → [MyFundedFX 詳細](/prop/myfundedfx/)
 
 ### 4位：Fintokei
 
@@ -62,7 +62,7 @@ EA・スキャル・ニュース全OK、しかも **日本語サポート完備*
 - スプリット：80%
 - 日本語：◎
 - 推奨理由：**日本語でEA運用関連の質問ができる唯一の選択肢**
-- → [Fintokei 詳細](/prop-fx-navi/prop/fintokei/)
+- → [Fintokei 詳細](/prop/fintokei/)
 
 ### 5位：Funding Pips
 
@@ -70,7 +70,7 @@ EA・スキャル・ニュース全OK、料金最安級＋出金最短3日。
 
 - スプリット：80%
 - 推奨理由：**EA運用で短期回転を狙う場合のベスト**
-- → [Funding Pips 詳細](/prop-fx-navi/prop/fundingpips/)
+- → [Funding Pips 詳細](/prop/fundingpips/)
 
 ## EA運用時の注意点
 
@@ -96,4 +96,4 @@ EA運用前提のプロップ選びは、「EA可」だけでなく **「ニュ�
 
 迷ったら **FTMO → FundedNext → Fintokei** の順で試すのがおすすめです。
 
-→ EA対応ランキング全社を見るなら [EA・自動売買OKランキング](/prop-fx-navi/prop/ranking/ea-friendly/) からどうぞ。
+→ EA対応ランキング全社を見るなら [EA・自動売買OKランキング](/prop/ranking/ea-friendly/) からどうぞ。
