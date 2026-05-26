@@ -167,7 +167,7 @@
     "name_en": "The5%ers",
     "logo": "/logos/the5ers.svg",
     "official_url": "https://the5ers.com",
-    "affiliate_url": "",
+    "affiliate_url": "https://www.the5ers.com/?afmc=1bj6",
     "headquarters": "イスラエル・テルアビブ",
     "founded_year": 2016,
     "payout_total_usd": "100,000,000+",
@@ -238,7 +238,16 @@
       "スケーリング目的"
     ],
     "updated_at": "2026-05-25",
-    "coupons": []
+    "coupons": [
+      {
+        "code": "QDW941TXU",
+        "description": "プロップFXナビ限定割引コード",
+        "discount_pct": 10,
+        "expires_at": null,
+        "badge": "限定",
+        "type": "exclusive"
+      }
+    ]
   },
   {
     "slug": "myfundedfx",
