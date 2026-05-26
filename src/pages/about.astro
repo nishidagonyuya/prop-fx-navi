@@ -15,14 +15,21 @@ const jsonLd = {
   },
   founder: {
     "@type": "Person",
-    name: "宮城ガイ",
-    jobTitle: "代表取締役・現役運用マネージャー",
+    name: "西田侑矢",
+    jobTitle: "代表取締役",
   },
+  member: [
+    {
+      "@type": "Person",
+      name: "宮城ガイ",
+      jobTitle: "代表講師・現役運用マネージャー",
+    },
+  ],
 };
 ---
 <BaseLayout
-  title="運営者情報｜株式会社KAIZEN・代表 宮城ガイ"
-  description="プロップFXナビは株式会社KAIZEN（代表：宮城ガイ／現役運用マネージャー・国際認定テクニカルアナリスト）が運営する、日本人トレーダー向けのプロップファーム比較メディアです。"
+  title="運営者情報｜株式会社KAIZEN（代表：西田侑矢／代表講師：宮城ガイ）"
+  description="プロップFXナビは株式会社KAIZEN（代表：西田侑矢／代表講師：宮城ガイ）が運営する、日本人トレーダー向けのプロップファーム比較メディアです。"
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
@@ -40,7 +47,8 @@ const jsonLd = {
         <table style="width:100%; border-collapse:collapse;">
           <tbody>
             <tr><td style="padding:10px 0; color:var(--text-muted); width:30%;">運営会社</td><td style="padding:10px 0;"><strong>株式会社KAIZEN</strong></td></tr>
-            <tr><td style="padding:10px 0; color:var(--text-muted);">代表者</td><td style="padding:10px 0;">宮城ガイ</td></tr>
+            <tr><td style="padding:10px 0; color:var(--text-muted);">代表取締役</td><td style="padding:10px 0;">西田 侑矢</td></tr>
+            <tr><td style="padding:10px 0; color:var(--text-muted);">代表講師</td><td style="padding:10px 0;">宮城 ガイ</td></tr>
             <tr><td style="padding:10px 0; color:var(--text-muted);">事業内容</td><td style="padding:10px 0;">FXスクール運営・書籍出版・金融情報メディア運営</td></tr>
             <tr><td style="padding:10px 0; color:var(--text-muted);">公式サイト</td><td style="padding:10px 0;"><a href="https://miraijob.jp/" target="_blank" rel="noopener">miraijob.jp</a></td></tr>
             <tr><td style="padding:10px 0; color:var(--text-muted);">メディア実績</td><td style="padding:10px 0;"><a href="https://miraijob.jp/media" target="_blank" rel="noopener">miraijob.jp/media</a></td></tr>
@@ -49,14 +57,25 @@ const jsonLd = {
       </div>
       <p>詳細は <a href={url("/guide/kaizen-corp/")}>株式会社KAIZEN とは</a> を参照してください。</p>
 
-      <h2 style="margin-top:50px;">代表者プロフィール</h2>
+      <h2 style="margin-top:50px;">代表取締役</h2>
       <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:30px; margin:20px 0;">
-        <h3 style="font-size:1.3rem; margin-bottom:14px;">宮城ガイ（みやぎ がい）</h3>
+        <h3 style="font-size:1.3rem; margin-bottom:14px;">西田 侑矢（にしだ ゆうや）</h3>
         <ul style="padding-left:1.4em; line-height:1.9;">
-          <li>株式会社KAIZEN 代表</li>
+          <li>株式会社KAIZEN 代表取締役</li>
+          <li>FXスクール「<a href={url("/guide/university-of-money/")}>University of Money</a>」運営責任者</li>
+          <li>当サイト「プロップFXナビ」運営総責任者</li>
+          <li>事業ビジョン：個人投資家が自力で資産運用できる金融リテラシー社会の実現</li>
+        </ul>
+      </div>
+
+      <h2 style="margin-top:50px;">代表講師</h2>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:30px; margin:20px 0;">
+        <h3 style="font-size:1.3rem; margin-bottom:14px;">宮城 ガイ（みやぎ がい）</h3>
+        <ul style="padding-left:1.4em; line-height:1.9;">
+          <li>株式会社KAIZEN <strong>代表講師</strong></li>
           <li><strong>現役の運用マネージャー</strong>（運用会社で会社資金を運用）</li>
           <li><strong>国際認定テクニカルアナリスト</strong>資格保有</li>
-          <li>FXスクール「<a href={url("/guide/university-of-money/")}>University of Money</a>」代表</li>
+          <li>FXスクール「<a href={url("/guide/university-of-money/")}>University of Money</a>」主宰</li>
           <li>Amazon Kindle「ガイ式FX 7つのシリーズ」全3巻 著者</li>
         </ul>
         <p style="margin-top:18px;">詳細は <a href={url("/guide/miyagi-gai-profile/")}>宮城ガイ プロフィール</a> へ。</p>
