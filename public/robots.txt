@@ -1,4 +1,66 @@
+# プロップFXナビ robots.txt
+# 通常の検索エンジン
 User-agent: *
+Allow: /
+
+# --- AI検索・生成エンジンを明示的に歓迎（GEO/AIEO） ---
+# OpenAI（ChatGPT / ChatGPT検索）
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic（Claude）
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google（Gemini / Vertex のAI利用。検索インデックスとは別制御）
+User-agent: Google-Extended
+Allow: /
+
+# Apple（Apple Intelligence）
+User-agent: Applebot-Extended
+Allow: /
+
+# Microsoft Copilot
+User-agent: Bingbot
+Allow: /
+
+# Common Crawl（多数のLLMの学習データ源）
+User-agent: CCBot
+Allow: /
+
+# その他のAIアシスタント
+User-agent: Amazonbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
 Allow: /
 
 Sitemap: https://propfxnavi.com/sitemap-index.xml
