@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import AuthorBox from "../../components/AuthorBox.astro";
 import { getCollection, render } from "astro:content";
 import { url } from "../../lib/url";
 
@@ -11,6 +12,9 @@ export async function getStaticPaths() {
 const { guide } = Astro.props;
 const { Content } = await render(guide);
 
+// 宮城ガイ プロフィールページ自身には監修バイラインを出さない
+const isProfilePage = guide.id === "miyagi-gai-profile";
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -18,17 +22,56 @@ const jsonLd = {
   description: guide.data.description,
   datePublished: guide.data.publishedAt,
   dateModified: guide.data.updatedAt,
-  author: { "@type": "Organization", name: "プロップFXナビ" },
-  publisher: { "@type": "Organization", name: "プロップFXナビ" },
+  author: {
+    "@type": "Person",
+    name: "宮城ガイ",
+    jobTitle: "運用マネージャー／FXスクール代表",
+    description:
+      "現役の運用会社マネージャー。国際認定テクニカルアナリスト。FXスクール『University of Money』代表。",
+    url: "https://propfxnavi.com/guide/miyagi-gai-profile/",
+    worksFor: { "@type": "Organization", name: "株式会社KAIZEN" },
+    sameAs: [
+      "https://www.youtube.com/@fxschool-gai",
+      "https://stand.fm/channels/65c393410a4a74f98fbf4b35",
+      "https://open.spotify.com/show/033ojAuBUgjSG4IhTayCSl",
+      "https://note.com/miyagi_gai",
+    ],
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "プロップFXナビ（株式会社KAIZEN）",
+    url: "https://propfxnavi.com/",
+  },
 };
 
-const otherGuides = (await getCollection("guides"))
-  .filter((g) => g.id !== guide.id)
-  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999))
-  .slice(0, 6);
+// FAQ がある記事は FAQPage 構造化データを追加（リッチリザルト用）
+const faqs = guide.data.faqs ?? [];
+const faqJsonLd = faqs.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    }
+  : null;
+
+// トピッククラスター：related 指定があれば優先、無ければ order 順で補完
+const allGuides = await getCollection("guides");
+const byId = new Map(allGuides.map((g) => [g.id, g]));
+const relatedManual = (guide.data.related ?? [])
+  .map((id) => byId.get(id))
+  .filter((g) => g && g.id !== guide.id);
+const fallback = allGuides
+  .filter((g) => g.id !== guide.id && !relatedManual.some((r) => r!.id === g.id))
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+const otherGuides = [...relatedManual, ...fallback].slice(0, 6);
 ---
 <BaseLayout title={guide.data.title} description={guide.data.description}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
   <section class="hero" style="padding-bottom:30px;">
     <div class="container" style="max-width:760px;">
@@ -42,7 +85,25 @@ const otherGuides = (await getCollection("guides"))
 
   <section class="section" style="padding-top:0;">
     <div class="container article-content" style="max-width:760px;">
+      {!isProfilePage && <AuthorBox variant="compact" updatedAt={guide.data.updatedAt} />}
       <Content />
+
+      {faqs.length > 0 && (
+        <div class="article-faq">
+          <h2 id="faq">よくある質問（FAQ）</h2>
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p set:html={f.a} />
+            </details>
+          ))}
+        </div>
+      )}
+
+      {!isProfilePage && <AuthorBox variant="full" />}
+      <p class="article-disclaimer">
+        ※本記事は情報提供を目的としたものであり、特定の金融商品の勧誘・投資助言を目的とするものではありません。プロップファームの利用やトレードは自己責任で行ってください。税務・法務など個別の判断は専門家にご相談ください。当サイトはアフィリエイトプログラムに参加しており、記事内のリンクから登録された場合に紹介料を受け取ることがあります。
+      </p>
     </div>
   </section>
 
@@ -132,5 +193,38 @@ const otherGuides = (await getCollection("guides"))
     color: var(--text-muted);
     font-weight: 600;
     font-size: 0.85rem;
+  }
+  .article-faq { margin: 40px 0 8px; }
+  .article-faq h2 {
+    font-size: 1.5rem; font-weight: 700; margin: 0 0 16px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border); color: var(--text);
+  }
+  .faq-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; margin: 10px 0; overflow: hidden;
+  }
+  .faq-item summary {
+    cursor: pointer; padding: 14px 18px; font-weight: 700;
+    font-size: 0.96rem; color: var(--text); list-style: none; position: relative;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "＋"; position: absolute; right: 18px; color: var(--accent); font-weight: 700;
+  }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item p {
+    margin: 0; padding: 0 18px 16px; line-height: 1.85;
+    color: var(--text-muted); font-size: 0.92rem;
+  }
+  .faq-item p a { color: var(--accent); }
+  .article-disclaimer {
+    margin-top: 22px;
+    padding: 14px 16px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--text-muted);
   }
 </style>

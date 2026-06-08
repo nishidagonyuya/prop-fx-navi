@@ -1,0 +1,225 @@
+---
+// 宮城ガイ 著者ボックス（E-E-A-T 強化用）
+// variant="compact" … 記事冒頭の監修バイライン
+// variant="full"    … 記事末尾のフルプロフィール＋SNS被リンク
+//
+// SNSリンクは Person schema の sameAs と一致させること（[...slug].astro 側）
+// LINE_URL に公式LINEの友だち追加URL（lin.ee/xxxx）を入れると LINE CTA が表示される
+import { url } from "../lib/url";
+
+interface Props {
+  variant?: "compact" | "full";
+  updatedAt?: string;
+}
+const { variant = "full", updatedAt } = Astro.props;
+
+export const AUTHOR = {
+  name: "宮城ガイ",
+  reading: "みやぎ がい",
+  role: "現役運用マネージャー／FXスクール『University of Money』代表",
+  org: "株式会社KAIZEN",
+  profileUrl: "/guide/miyagi-gai-profile/",
+  sns: {
+    youtube: "https://www.youtube.com/@fxschool-gai",
+    standfm: "https://stand.fm/channels/65c393410a4a74f98fbf4b35",
+    spotify: "https://open.spotify.com/show/033ojAuBUgjSG4IhTayCSl",
+    note: "https://note.com/miyagi_gai",
+  },
+};
+
+// 宮城ガイの著書（Amazon Kindle）。記事末尾の著者ボックスに被リンク表示
+export const BOOKS = [
+  { emoji: "📕", label: "FXで負け続ける人がやっている7つの習慣", url: "https://www.amazon.co.jp/dp/B0H28V9JPQ", tag: "ガイ式FX 7つのシリーズ ①" },
+  { emoji: "📗", label: "FXで勝つ人がチャートを開いて最初にやる7つのこと", url: "https://www.amazon.co.jp/dp/B0H28RL222", tag: "環境認識 完全ガイド ②" },
+  { emoji: "📘", label: "FXでプロップファームに合格する人がやっている7つの準備", url: "https://www.amazon.co.jp/dp/B0H27BX2L8", tag: "プロップ攻略 完全ガイド ③" },
+  { emoji: "🎞", label: "漫画で学ぶ プロップトレーダーへの最短ロードマップ", url: "https://www.amazon.co.jp/dp/B0GX2WHS14", tag: "ガイ式FX 漫画シリーズ" },
+  { emoji: "🎞", label: "漫画で学ぶ FXで勝ち続けるための習慣術", url: "https://www.amazon.co.jp/dp/B0H3218FMR", tag: "ガイ式FX 漫画シリーズ" },
+];
+
+// 公式LINE 登録LP（プレゼント動線）。空にすると CTA 非表示
+const LINE_URL = "https://sub.miraijob.jp/p/kindle1?ftid=DJPLfkHuJQfm";
+---
+
+{variant === "compact" && (
+  <div class="author-byline">
+    <span class="ab-avatar ab-avatar-sm">ガイ</span>
+    <div class="ab-byline-text">
+      <span class="ab-byline-label">監修</span>
+      <a href={url(AUTHOR.profileUrl)} class="ab-name">{AUTHOR.name}</a>
+      <span class="ab-byline-role">現役運用マネージャー・国際認定テクニカルアナリスト</span>
+    </div>
+    {updatedAt && <span class="ab-byline-date">最終更新 {updatedAt}</span>}
+  </div>
+)}
+
+{variant === "full" && (
+  <aside class="author-box" aria-label="この記事の執筆・監修者">
+    <div class="ab-head">
+      <span class="ab-avatar">ガイ</span>
+      <div class="ab-head-text">
+        <div class="ab-eyebrow">この記事の執筆・監修者</div>
+        <a href={url(AUTHOR.profileUrl)} class="ab-name ab-name-lg">{AUTHOR.name}<span class="ab-reading">（{AUTHOR.reading}）</span></a>
+        <div class="ab-role">{AUTHOR.role}</div>
+      </div>
+    </div>
+
+    <p class="ab-bio">
+      運用会社で<strong>現役の運用マネージャー</strong>として会社資金（億単位）を運用するかたわら、
+      <strong>国際認定テクニカルアナリスト</strong>として個人投資家向けFXスクール
+      「University of Money」を主宰。受講生は<strong>1,000名以上</strong>、FTMO・FundedNext 等の
+      プロップファーム合格者を多数輩出している。著書「ガイ式FX 7つのシリーズ」（全3巻）を Amazon Kindle にて刊行。
+      本サイト「プロップFXナビ」は宮城ガイが代表を務める {AUTHOR.org} が運営しています。
+    </p>
+
+    <ul class="ab-creds">
+      <li>✔ 国際認定テクニカルアナリスト</li>
+      <li>✔ 運用会社 現役運用マネージャー</li>
+      <li>✔ 受講生1,000名以上・プロップ合格者多数</li>
+      <li>✔ TOKYO MX／NewsPicks 等メディア掲載（運営会社KAIZEN）</li>
+    </ul>
+
+    <div class="ab-books">
+      <div class="ab-books-head">📚 宮城ガイの著書（Amazon Kindle）</div>
+      <ul class="ab-books-list">
+        {BOOKS.map((b) => (
+          <li>
+            <a href={b.url} target="_blank" rel="noopener">
+              <span class="ab-book-emoji">{b.emoji}</span>
+              <span class="ab-book-title">{b.label}</span>
+              <span class="ab-book-tag">{b.tag}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="ab-sns">
+      <a class="ab-sns-btn ab-yt" href={AUTHOR.sns.youtube} target="_blank" rel="noopener">
+        <span class="ab-ico">▶</span> YouTube
+      </a>
+      <a class="ab-sns-btn ab-fm" href={AUTHOR.sns.standfm} target="_blank" rel="noopener">
+        <span class="ab-ico">🎙</span> stand.fm
+      </a>
+      <a class="ab-sns-btn ab-sp" href={AUTHOR.sns.spotify} target="_blank" rel="noopener">
+        <span class="ab-ico">♫</span> Spotify
+      </a>
+      <a class="ab-sns-btn ab-nt" href={AUTHOR.sns.note} target="_blank" rel="noopener">
+        <span class="ab-ico">n</span> note
+      </a>
+      <a class="ab-sns-btn ab-pf" href={url(AUTHOR.profileUrl)}>
+        プロフィール詳細 →
+      </a>
+    </div>
+
+    {LINE_URL && (
+      <a class="ab-line-cta" href={LINE_URL} target="_blank" rel="noopener">
+        🎁 公式LINE登録で「プロップファーム完全攻略動画（全5本）」を無料プレゼント
+      </a>
+    )}
+  </aside>
+)}
+
+<style>
+  /* avatar */
+  .ab-avatar {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: #06231d;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+  .ab-avatar-sm { width: 34px; height: 34px; font-size: 0.72rem; }
+
+  /* compact byline */
+  .author-byline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    margin: 8px 0 26px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.86rem;
+    flex-wrap: wrap;
+  }
+  .ab-byline-text { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .ab-byline-label {
+    background: var(--accent); color: #06231d; font-weight: 700;
+    font-size: 0.72rem; padding: 1px 7px; border-radius: 4px;
+  }
+  .ab-byline-role { color: var(--text-muted); font-size: 0.8rem; }
+  .ab-byline-date { margin-left: auto; color: var(--text-muted); font-size: 0.8rem; }
+
+  /* full box */
+  .author-box {
+    margin: 44px 0 12px;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+  .ab-head { display: flex; align-items: center; gap: 14px; }
+  .ab-eyebrow { font-size: 0.74rem; color: var(--text-muted); letter-spacing: 0.04em; }
+  .ab-name { color: var(--text); font-weight: 800; text-decoration: none; }
+  .ab-name:hover { color: var(--accent); }
+  .ab-name-lg { font-size: 1.25rem; display: inline-block; margin-top: 2px; }
+  .ab-reading { font-size: 0.8rem; font-weight: 400; color: var(--text-muted); }
+  .ab-role { font-size: 0.84rem; color: var(--text-muted); margin-top: 3px; }
+
+  .ab-bio { font-size: 0.9rem; line-height: 1.9; color: var(--text-muted); margin: 18px 0 14px; }
+  .ab-bio strong { color: var(--text); }
+
+  .ab-creds {
+    list-style: none; padding: 0; margin: 0 0 18px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px;
+    font-size: 0.84rem; color: var(--text);
+  }
+
+  .ab-books {
+    margin: 0 0 18px; padding: 14px 16px;
+    background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;
+  }
+  .ab-books-head { font-size: 0.84rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .ab-books-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+  .ab-books-list a {
+    display: flex; align-items: baseline; gap: 8px;
+    padding: 7px 10px; border-radius: 8px; text-decoration: none;
+    background: var(--card); border: 1px solid var(--border); transition: border-color .12s;
+  }
+  .ab-books-list a:hover { border-color: var(--accent); }
+  .ab-book-emoji { flex: 0 0 auto; font-size: 0.95rem; }
+  .ab-book-title { flex: 1 1 auto; font-size: 0.82rem; color: var(--text); font-weight: 600; line-height: 1.5; }
+  .ab-book-tag { flex: 0 0 auto; font-size: 0.68rem; color: var(--accent); white-space: nowrap; }
+
+  .ab-sns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ab-sns-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 8px;
+    font-size: 0.84rem; font-weight: 700; text-decoration: none;
+    background: var(--bg-soft); color: var(--text);
+    border: 1px solid var(--border); transition: transform .12s, border-color .12s;
+  }
+  .ab-sns-btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+  .ab-ico { font-size: 0.9rem; }
+  .ab-yt:hover { color: #ff5c7c; }
+  .ab-pf { background: transparent; color: var(--accent); border-style: dashed; }
+
+  .ab-line-cta {
+    display: block; margin-top: 16px; padding: 14px 18px;
+    background: linear-gradient(135deg, #06C755, #04a648);
+    color: #fff; font-weight: 700; font-size: 0.9rem;
+    text-align: center; text-decoration: none; border-radius: 10px;
+  }
+  .ab-line-cta:hover { opacity: 0.92; }
+
+  @media (max-width: 520px) {
+    .ab-creds { grid-template-columns: 1fr; }
+  }
+</style>

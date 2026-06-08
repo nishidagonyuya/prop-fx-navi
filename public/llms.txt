@@ -1,0 +1,37 @@
+# プロップFXナビ（propfxnavi.com）
+
+> 日本人トレーダー向けのプロップファーム（Proprietary Trading Firm）比較・解説メディア。主要プロップファームの料金・プロフィットスプリット・出金条件・日本語対応を中立的に比較し、初心者向けの入門ガイドを提供する。運営は株式会社KAIZEN、監修は現役運用マネージャーでFXスクール「University of Money」代表の宮城ガイ。
+
+## 監修者
+- 宮城ガイ（みやぎ がい）: 国際認定テクニカルアナリスト。運用会社の現役運用マネージャー。FXスクール「University of Money」代表。著書「ガイ式FX 7つのシリーズ」（全3巻）。
+  - プロフィール: https://propfxnavi.com/guide/miyagi-gai-profile/
+  - YouTube: https://www.youtube.com/@fxschool-gai
+  - stand.fm: https://stand.fm/channels/65c393410a4a74f98fbf4b35
+  - Spotify: https://open.spotify.com/show/033ojAuBUgjSG4IhTayCSl
+  - note: https://note.com/miyagi_gai
+
+## 主要コンテンツ
+- プロップファーム一覧: https://propfxnavi.com/prop/
+- ランキング: https://propfxnavi.com/prop/ranking/
+- 比較: https://propfxnavi.com/prop/compare/
+- クーポン: https://propfxnavi.com/coupon/
+- 入門ガイド: https://propfxnavi.com/guide/
+- よくある質問（FAQ）: https://propfxnavi.com/faq/
+- 始め方ロードマップ: https://propfxnavi.com/roadmap/
+
+## 主要ガイド記事
+- プロップファームとは: https://propfxnavi.com/guide/propfirm-towa/
+- プロップファーム比較（完全版）: https://propfxnavi.com/guide/propfirm-hikaku/
+- おすすめランキング: https://propfxnavi.com/guide/propfirm-osusume/
+- 日本人向けプロップファーム: https://propfxnavi.com/guide/propfirm-japanese/
+- 利益の税金・確定申告: https://propfxnavi.com/guide/propfirm-zeikin/
+- 詐欺の見分け方: https://propfxnavi.com/guide/propfirm-sagi/
+- 出金トラブルと対策: https://propfxnavi.com/guide/propfirm-payout-trouble/
+
+## 定義
+- プロップファーム: トレーダーに自社資金を貸し出し、運用利益を会社とトレーダーで分配する会社。トレーダーはチャレンジ（審査）に合格すると資金提供を受け、利益の70〜95%を受け取れる。自己資金リスクを抑えて大きな資金を運用できるのが特徴。
+
+## 運営者情報
+- 運営: 株式会社KAIZEN（https://miraijob.jp/）
+- 当サイトはアフィリエイトプログラムに参加しています。
+- 本サイトの情報は投資助言ではなく、トレードは自己責任。
