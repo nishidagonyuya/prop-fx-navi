@@ -43,7 +43,8 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
   <header class="site-header">
     <div class="container">
       <a href={url("/")} class="logo">プロップ<span>FXナビ</span></a>
-      <nav>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-nav"></button>
+      <nav id="site-nav">
         <a href={url("/prop/")}>一覧</a>
         <a href={url("/prop/ranking/")}>ランキング</a>
         <a href={url("/prop/compare/")}>比較</a>
@@ -55,6 +56,25 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
       </nav>
     </div>
   </header>
+  <script is:inline>
+    (function () {
+      var btn = document.querySelector(".nav-toggle");
+      var nav = document.getElementById("site-nav");
+      if (!btn || !nav) return;
+      btn.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        btn.classList.toggle("is-open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      nav.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") {
+          nav.classList.remove("open");
+          btn.classList.remove("is-open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      });
+    })();
+  </script>
   <main>
     <slot />
   </main>
