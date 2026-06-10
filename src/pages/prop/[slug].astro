@@ -63,6 +63,13 @@ const breadcrumbLd = {
 
   <section class="detail-head">
     <div class="container">
+      <nav class="breadcrumb" aria-label="パンくず">
+        <a href={url("/")}>ホーム</a>
+        <span class="sep">›</span>
+        <a href={url("/prop/")}>プロップファーム一覧</a>
+        <span class="sep">›</span>
+        <span class="current">{firm.name_en}</span>
+      </nav>
       <div class="row">
         <div style="flex:1; min-width:280px;">
           <h1>{firm.name_en}</h1>

@@ -87,9 +87,14 @@ const otherGuides = [...relatedManual, ...fallback].slice(0, 6);
 
   <section class="hero" style="padding-bottom:30px;">
     <div class="container" style="max-width:760px;">
-      <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
-        <a href={url("/guide/")} style="color:var(--text-muted);">入門ガイド</a> ／ 更新日 {guide.data.updatedAt}
-      </div>
+      <nav class="breadcrumb" aria-label="パンくず">
+        <a href={url("/")}>ホーム</a>
+        <span class="sep">›</span>
+        <a href={url("/guide/")}>入門ガイド</a>
+        <span class="sep">›</span>
+        <span class="current">{guide.data.title}</span>
+      </nav>
+      <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">更新日 {guide.data.updatedAt}</div>
       <h1 style="font-size:clamp(1.5rem, 3vw, 2.2rem); line-height:1.4; text-align:left;">{guide.data.title}</h1>
       <p style="text-align:left; color:var(--text-muted); margin-top:14px;">{guide.data.description}</p>
     </div>
