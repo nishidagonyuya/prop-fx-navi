@@ -1,10 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import props from "../data/props.json";
+import { getCollection } from "astro:content";
 import { url } from "../lib/url";
 
 const sorted = [...props].sort((a, b) => b.review_score - a.review_score);
 const totalFirms = props.length;
+
+// ガイド記事ハブ（カテゴリ別）
+const guides = await getCollection("guides");
+const titleOf = new Map(guides.map((g) => [g.id, g.data.title]));
+const guideCount = guides.length;
+
+const guideCategories = [
+  { icon: "🔰", title: "はじめての方へ", slugs: ["propfirm-towa", "prop-trader-towa", "propfirm-muzukashii", "propfirm-mokaru", "propfirm-demo", "propfirm-rekishi"] },
+  { icon: "📊", title: "選び方・比較", slugs: ["propfirm-hikaku", "propfirm-osusume", "propfirm-ichiran", "propfirm-japanese", "propfirm-kokusan", "propfirm-vs-kaigai-fx"] },
+  { icon: "🎯", title: "チャレンジ攻略", slugs: ["propfirm-challenge-tips", "propfirm-goukakuritsu", "propfirm-drawdown", "propfirm-step", "propfirm-instant", "propfirm-scaling"] },
+  { icon: "⚙️", title: "ルール・機能", slugs: ["propfirm-ea", "propfirm-scalping", "propfirm-kinshi", "propfirm-news", "propfirm-leverage", "propfirm-lot", "propfirm-spread", "propfirm-platform"] },
+  { icon: "💰", title: "税金・お金", slugs: ["propfirm-zeikin", "propfirm-houjinka", "propfirm-houjin-kouza", "propfirm-keihi", "propfirm-fukugyo", "propfirm-komuin", "propfirm-kojin-jigyo"] },
+  { icon: "🛡️", title: "安全・トラブル", slugs: ["propfirm-sagi", "propfirm-payout-trouble", "propfirm-refund", "propfirm-kisei", "propfirm-menkyo", "propfirm-age"] },
+  { icon: "🏢", title: "業者別ガイド", slugs: ["ftmo-hajimekata", "fundednext-hajimekata", "fintokei-hyoban", "apex-hajimekata", "fundingpips-hajimekata", "fxify-hajimekata", "topstep-hajimekata", "the5ers-hajimekata"] },
+];
 ---
 <BaseLayout
   title="プロップFXナビ"
@@ -80,4 +96,72 @@ const totalFirms = props.length;
       </div>
     </div>
   </section>
+
+  <section class="section" style="border-top:1px solid var(--border);">
+    <div class="container">
+      <h2>プロップファーム ガイド<span class="badge">全{guideCount}記事</span></h2>
+      <p style="color:var(--text-muted); margin:-18px 0 28px;">仕組み・選び方・攻略・税金・業者別まで、現役運用マネージャー宮城ガイ監修の解説記事。</p>
+      <div class="guide-hub">
+        {guideCategories.map((cat) => (
+          <div class="guide-cat">
+            <h3><span class="gc-icon">{cat.icon}</span>{cat.title}</h3>
+            <ul>
+              {cat.slugs.filter((s) => titleOf.has(s)).map((s) => (
+                <li><a href={url(`/guide/${s}/`)}>{titleOf.get(s)}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center; margin-top:30px;">
+        <a href={url("/guide/")} class="hub-all">すべてのガイドを見る →</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .guide-hub {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  .guide-cat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .guide-cat h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .gc-icon { font-size: 1.15rem; }
+  .guide-cat ul { list-style: none; padding: 0; margin: 0; }
+  .guide-cat li {
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  .guide-cat li:last-child { border-bottom: none; }
+  .guide-cat a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: block;
+  }
+  .guide-cat a:hover { color: var(--accent); text-decoration: none; }
+  .hub-all {
+    display: inline-block;
+    background: var(--card);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .hub-all:hover { background: var(--accent); color: var(--bg); text-decoration: none; }
+</style>
