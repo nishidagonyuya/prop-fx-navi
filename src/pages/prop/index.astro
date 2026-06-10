@@ -4,11 +4,36 @@ import props from "../../data/props.json";
 import { url } from "../../lib/url";
 
 const sorted = [...props].sort((a, b) => b.review_score - a.review_score);
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "プロップファーム一覧",
+  numberOfItems: sorted.length,
+  itemListElement: sorted.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.name_en,
+    url: `https://propfxnavi.com/prop/${p.slug}/`,
+  })),
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://propfxnavi.com/" },
+    { "@type": "ListItem", position: 2, name: "プロップファーム一覧", item: "https://propfxnavi.com/prop/" },
+  ],
+};
 ---
 <BaseLayout
   title="プロップファーム一覧"
   description="掲載中のプロップファーム全社の一覧。料金・プロフィットスプリット・出金条件で比較できます。"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+
   <section class="hero">
     <div class="container">
       <h1>プロップファーム<span class="accent">全{sorted.length}社</span>一覧</h1>

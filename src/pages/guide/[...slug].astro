@@ -58,6 +58,17 @@ const faqJsonLd = faqs.length
     }
   : null;
 
+// パンくず構造化データ（SERPでパンくず表示）
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://propfxnavi.com/" },
+    { "@type": "ListItem", position: 2, name: "入門ガイド", item: "https://propfxnavi.com/guide/" },
+    { "@type": "ListItem", position: 3, name: guide.data.title, item: `https://propfxnavi.com/guide/${guide.id}/` },
+  ],
+};
+
 // トピッククラスター：related 指定があれば優先、無ければ order 順で補完
 const allGuides = await getCollection("guides");
 const byId = new Map(allGuides.map((g) => [g.id, g]));
@@ -72,6 +83,7 @@ const otherGuides = [...relatedManual, ...fallback].slice(0, 6);
 <BaseLayout title={guide.data.title} description={guide.data.description}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
 
   <section class="hero" style="padding-bottom:30px;">
     <div class="container" style="max-width:760px;">

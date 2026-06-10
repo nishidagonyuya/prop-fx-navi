@@ -43,12 +43,23 @@ const jsonLd = {
   author: { "@type": "Organization", name: "プロップFXナビ" },
   datePublished: firm.updated_at,
 };
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://propfxnavi.com/" },
+    { "@type": "ListItem", position: 2, name: "プロップファーム一覧", item: "https://propfxnavi.com/prop/" },
+    { "@type": "ListItem", position: 3, name: firm.name_en, item: `https://propfxnavi.com/prop/${firm.slug}/` },
+  ],
+};
 ---
 <BaseLayout
   title={`${firm.name_en} 評判・口コミ・料金（2026年最新）`}
   description={`${firm.name_en}（${firm.tagline}）の料金・プロフィットスプリット・出金条件・日本語対応を徹底解説。実際に使った評価レビュー付き。`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
 
   <section class="detail-head">
     <div class="container">
