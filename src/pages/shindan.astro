@@ -1,0 +1,637 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AuthorBox from "../components/AuthorBox.astro";
+import propsData from "../data/props.json";
+import { url } from "../lib/url";
+
+// ───────────────────────────────────────────────────────────────
+// 診断ツール用に props.json から「実在データのみ」を抽出した軽量データセット。
+// クライアントサイドのスコアリングで参照する。数値・条件は一切捏造しない。
+// ───────────────────────────────────────────────────────────────
+const dataset = propsData.map((p) => {
+  const challenges = p.challenge_types || [];
+  const fees = challenges.map((c) => c.fee_usd).filter((n) => typeof n === "number");
+  const sizes = challenges.map((c) => c.account_size_usd).filter((n) => typeof n === "number");
+  const splits = challenges
+    .map((c) => c.profit_split_pct)
+    .filter((n) => typeof n === "number");
+  const methods = (p.payout_methods || []).join(" ");
+  return {
+    slug: p.slug,
+    name: p.name_en,
+    name_ja: p.name_ja,
+    tagline: p.tagline,
+    headquarters: p.headquarters,
+    score: p.review_score,
+    minFee: fees.length ? Math.min(...fees) : null,
+    minSize: sizes.length ? Math.min(...sizes) : null,
+    maxSize: sizes.length ? Math.max(...sizes) : null,
+    maxSplit: splits.length ? Math.max(...splits) : null,
+    minPayoutDays: typeof p.min_payout_days === "number" ? p.min_payout_days : null,
+    japanese: !!p.features?.japanese_support,
+    scalping: !!p.features?.scalping_allowed,
+    weekendHolding: !!p.features?.weekend_holding,
+    ea: !!p.features?.ea_allowed,
+    news: !!p.features?.news_trading_allowed,
+    payoutPaypal: /PayPal/i.test(methods),
+    payoutUsdt: /USDT|Crypto|BTC/i.test(methods),
+    payoutBank: /銀行|Wise|Skrill|Rise/i.test(methods),
+    bestFor: p.best_for || [],
+    // CTA は props.json の実データのみ。アフィリが空なら公式URLにフォールバック。
+    cta: p.affiliate_url || p.official_url,
+    hasAffiliate: !!p.affiliate_url,
+  };
+});
+
+// 全社の出金最速・最大スプリットなど解説テキスト用に集計（捏造防止のため実データ集計）
+const fastest = [...dataset]
+  .filter((d) => d.minPayoutDays !== null)
+  .sort((a, b) => (a.minPayoutDays ?? 99) - (b.minPayoutDays ?? 99))[0];
+const cheapest = [...dataset]
+  .filter((d) => d.minFee !== null)
+  .sort((a, b) => (a.minFee ?? 9e9) - (b.minFee ?? 9e9))[0];
+const jpFirms = dataset.filter((d) => d.japanese).map((d) => d.name);
+
+// ── JSON-LD（WebApplication + FAQPage） ──
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "あなたに合うプロップファーム診断",
+  url: "https://propfxnavi.com/shindan/",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  description:
+    "5つの質問に答えるだけで、資金規模・トレード経験・重視点・受取方法・トレードスタイルに合ったプロップファームのおすすめTOP3を、掲載データに基づいて提示する無料診断ツール。",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
+  inLanguage: "ja",
+  isAccessibleForFree: true,
+  publisher: { "@type": "Organization", name: "株式会社KAIZEN" },
+};
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "プロップファーム診断はどうやって相性を判定していますか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "資金規模・トレード経験・重視点・利益の受取方法・トレードスタイルの5項目への回答を、掲載中のプロップファーム各社の口座サイズ・チャレンジ料金・プロフィットスプリット・出金最短日数・対応決済手段・取引ルール（スキャルピング/EA/週末持ち越し可否）・日本語サポート有無といった公開データと突き合わせてスコア化し、相性の高い上位3社を提示しています。すべて掲載データに基づく機械的なマッチングで、利益や合格を保証するものではありません。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "日本語サポートのあるプロップファームを選びたいときはどうすればいいですか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `「重視点」で「日本語サポート」を選ぶと、日本語対応のある業者（掲載データ上は ${jpFirms.join("、")}）が上位に出やすくなります。英語に不安がある場合は、まず日本語対応・運営歴の長い業者から検討するのが無難です。`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "出金スピードを最優先したい場合、どこが速いですか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: fastest
+          ? `掲載データ上の最短出金日数では ${fastest.name}（最短${fastest.minPayoutDays}日）がもっとも速い部類です。診断で「重視点＝出金スピード」を選ぶと、最短日数の短い業者が上位に出やすくなります。実際の着金は決済手段・本人確認状況によって前後します。`
+          : "重視点で「出金スピード」を選ぶと、最短出金日数の短い業者が上位に出やすくなります。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "この診断は無料ですか？登録は必要ですか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "完全無料で、会員登録やメールアドレスの入力は不要です。ブラウザ上で回答するだけで結果が表示されます。",
+      },
+    },
+  ],
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://propfxnavi.com/" },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "プロップファーム診断",
+      item: "https://propfxnavi.com/shindan/",
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="あなたに合うプロップファーム診断｜30秒で相性TOP3がわかる"
+  description="5つの質問に答えるだけで、資金規模・経験・重視点・受取方法・トレードスタイルに合ったプロップファームのおすすめTOP3を掲載データから提示。無料・登録不要の相性診断ツール。"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(webAppLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+
+  <section class="hero" style="padding-bottom:36px;">
+    <div class="container" style="max-width:820px;">
+      <nav class="breadcrumb" aria-label="パンくず" style="justify-content:center;">
+        <a href={url("/")}>ホーム</a>
+        <span class="sep">›</span>
+        <span class="current">プロップファーム診断</span>
+      </nav>
+      <h1>あなたに合う<span class="accent">プロップファーム診断</span></h1>
+      <p>
+        5つの質問に答えるだけ。<strong style="color:var(--text);">約30秒</strong>で、あなたの資金規模・経験・重視点に合ったプロップファームの<strong style="color:var(--text);">相性TOP3</strong>を、掲載中{dataset.length}社のデータから提示します。無料・登録不要。
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container" style="max-width:820px;">
+
+      <!-- ── 診断フォーム ── -->
+      <div id="quiz" class="quiz">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="progressBar"></div></div>
+
+        <div class="quiz-step is-active" data-step="0">
+          <div class="q-num">質問 1 / 5</div>
+          <h2 class="q-title">運用したい口座サイズは？</h2>
+          <div class="q-opts" data-key="size">
+            <button class="q-opt" data-val="small">少額から（〜$25,000）</button>
+            <button class="q-opt" data-val="mid">標準的（$50,000〜$100,000）</button>
+            <button class="q-opt" data-val="large">大口（$200,000以上）</button>
+            <button class="q-opt" data-val="any">こだわらない</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="1">
+          <div class="q-num">質問 2 / 5</div>
+          <h2 class="q-title">あなたのトレード経験は？</h2>
+          <div class="q-opts" data-key="exp">
+            <button class="q-opt" data-val="beginner">初心者（プロップは初挑戦）</button>
+            <button class="q-opt" data-val="intermediate">中級者（裁量で勝てる手応えあり）</button>
+            <button class="q-opt" data-val="advanced">上級者（手法・規律が確立済み）</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="2">
+          <div class="q-num">質問 3 / 5</div>
+          <h2 class="q-title">いちばん重視したいのは？</h2>
+          <div class="q-opts" data-key="priority">
+            <button class="q-opt" data-val="payout">高い利益配分（プロフィットスプリット）</button>
+            <button class="q-opt" data-val="rules">ルールの緩さ（取引の自由度）</button>
+            <button class="q-opt" data-val="speed">出金スピード</button>
+            <button class="q-opt" data-val="japanese">日本語サポート</button>
+            <button class="q-opt" data-val="cost">初期コストの安さ</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="3">
+          <div class="q-num">質問 4 / 5</div>
+          <h2 class="q-title">利益の受取方法はどれが希望？</h2>
+          <div class="q-opts" data-key="payment">
+            <button class="q-opt" data-val="paypal">PayPal</button>
+            <button class="q-opt" data-val="usdt">仮想通貨（USDT等）</button>
+            <button class="q-opt" data-val="bank">銀行送金 / Wise</button>
+            <button class="q-opt" data-val="any">こだわらない</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="4">
+          <div class="q-num">質問 5 / 5</div>
+          <h2 class="q-title">あなたのトレードスタイルは？</h2>
+          <div class="q-opts" data-key="style">
+            <button class="q-opt" data-val="scalp">スキャルピング（短期・高頻度）</button>
+            <button class="q-opt" data-val="swing">スイング（数日〜週またぎ保有）</button>
+            <button class="q-opt" data-val="ea">EA・自動売買を使う</button>
+            <button class="q-opt" data-val="any">特に決まっていない</button>
+          </div>
+        </div>
+
+        <div class="quiz-nav">
+          <button id="backBtn" class="quiz-back" type="button" hidden>← 戻る</button>
+        </div>
+      </div>
+
+      <!-- ── 結果 ── -->
+      <div id="result" class="quiz-result" hidden>
+        <h2 class="result-title">あなたの相性<span class="accent">TOP3</span></h2>
+        <p class="result-lead" id="resultLead"></p>
+        <div id="resultCards" class="result-cards"></div>
+        <div class="result-actions">
+          <button id="retryBtn" class="quiz-retry" type="button">もう一度診断する</button>
+          <a class="quiz-alllink" href={url("/prop/ranking/")}>全{dataset.length}社のランキングを見る →</a>
+        </div>
+        <p class="result-disclaimer">
+          ※本診断は掲載データに基づく機械的なマッチング結果であり、利益や合格を保証するものではありません。最終的な口座開設の判断は各社の最新の公式情報をご確認のうえ、自己責任で行ってください。
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── AIEO/SEO 向け 解説テキスト（タイプ別の特徴を一次情報として明文化） ── -->
+  <section class="section" style="padding-top:0;">
+    <div class="container article-content" style="max-width:760px;">
+      <AuthorBox variant="compact" updatedAt="2026-06-22" />
+
+      <h2 id="how">この診断の仕組み（30秒でわかる）</h2>
+      <p>
+        本診断は、掲載中のプロップファーム{dataset.length}社について公開している「口座サイズ・チャレンジ料金・プロフィットスプリット・最短出金日数・対応決済手段・取引ルール（スキャルピング／EA／週末持ち越しの可否）・日本語サポート有無」といった<strong>実データ</strong>を使い、あなたの5つの回答との一致度をスコア化して相性の高い順に並べています。スコアが高いほど、あなたの条件に当てはまる項目が多い業者です。
+      </p>
+
+      <h2 id="types">タイプ別・選び方の目安</h2>
+      <h3>初心者・日本語サポート重視の人</h3>
+      <p>
+        英語のサポートに不安がある場合は、まず<strong>日本語対応</strong>のある業者から検討するのが無難です。掲載データ上で日本語サポートありとしているのは {jpFirms.join("、")} です。運営歴や口コミ評価の高さも、初挑戦では安心材料になります。
+      </p>
+      <h3>初期コスト・出金スピードを重視する人</h3>
+      <p>
+        チャレンジ料金は同じ$100,000口座でも業者で差があります。掲載データ上、最低料金がもっとも安い部類は{cheapest ? `${cheapest.name}（最低$${cheapest.minFee}）` : "新興系の業者"}です。出金の速さでは{fastest ? `${fastest.name}（最短${fastest.minPayoutDays}日）` : "新興系の業者"}が短い部類で、コスパ・回転重視ならこのあたりが候補になります。
+      </p>
+      <h3>利益配分（スプリット）を最大化したい人</h3>
+      <p>
+        合格後に受け取れる利益の割合（プロフィットスプリット）は、業者・プランで70〜95%程度の幅があります。配分を最優先するなら、最大スプリットの高いプランを持つ業者が候補です。ただし高スプリットのプランほど料金やルールが厳しい場合もあるため、配分率だけでなく合格条件・対象口座と合わせて判断してください。
+      </p>
+      <h3>取引ルールの自由度（スキャル・EA・週末持ち越し）を重視する人</h3>
+      <p>
+        スキャルピング・ニュース時間帯のトレード・EA（自動売買）・週末のポジション持ち越しは、業者によって可否が分かれます。短期高頻度のスキャルピングや自動売買が前提なら、診断の「トレードスタイル」でその項目を選ぶと、ルール上それを許可している業者が上位に出やすくなります。スイング派は週末持ち越し可の業者を選ぶことが重要です。
+      </p>
+
+      <h2 id="caution">診断結果を使うときの注意</h2>
+      <p>
+        プロップファームのチャレンジは、合格すれば利益配分を受けられる一方、料金は基本的に返金されない（一部条件付き返金あり）仕組みで、合格・利益を保証するものではありません。各社のルール・料金・スプリットは変更されることがあるため、申し込み前に必ず各社の<strong>最新の公式情報</strong>を確認してください。本サイトはアフィリエイトプログラムに参加しており、診断結果のリンクから申し込みが行われた場合に紹介料を受け取ることがありますが、それによって診断スコアや並び順を操作することはありません。
+      </p>
+
+      <div class="related-links">
+        <h2 id="related">あわせて読みたい</h2>
+        <ul>
+          <li><a href={url("/prop/ranking/")}>プロップファーム おすすめランキング</a></li>
+          <li><a href={url("/prop/compare/")}>プロップファーム 比較</a></li>
+          <li><a href={url("/guide/propfirm-japanese/")}>日本語対応のプロップファームの選び方</a></li>
+          <li><a href={url("/guide/propfirm-keihi/")}>チャレンジ料金・コストの考え方</a></li>
+          <li><a href={url("/guide/propfirm-instant/")}>インスタントファンディングとは</a></li>
+          <li><a href={url("/guide/propfirm-ea/")}>EA（自動売買）が使えるプロップファーム</a></li>
+          <li><a href={url("/roadmap/")}>プロップファームの始め方ロードマップ</a></li>
+        </ul>
+      </div>
+
+      <AuthorBox variant="full" />
+    </div>
+  </section>
+
+  <!-- データセットを安全に埋め込み（実データのみ） -->
+  <script type="application/json" id="propDataset" set:html={JSON.stringify(dataset)} />
+
+  <script is:inline>
+    (function () {
+      var FIRMS = JSON.parse(document.getElementById("propDataset").textContent);
+      var TOTAL_STEPS = 5;
+      var answers = {};
+      var step = 0;
+
+      var quiz = document.getElementById("quiz");
+      var steps = Array.prototype.slice.call(quiz.querySelectorAll(".quiz-step"));
+      var bar = document.getElementById("progressBar");
+      var backBtn = document.getElementById("backBtn");
+      var resultEl = document.getElementById("result");
+      var resultCards = document.getElementById("resultCards");
+      var resultLead = document.getElementById("resultLead");
+
+      function render() {
+        steps.forEach(function (s, i) {
+          s.classList.toggle("is-active", i === step);
+        });
+        bar.style.width = (step / TOTAL_STEPS) * 100 + "%";
+        backBtn.hidden = step === 0;
+      }
+
+      quiz.addEventListener("click", function (e) {
+        var btn = e.target.closest(".q-opt");
+        if (!btn) return;
+        var key = btn.parentElement.getAttribute("data-key");
+        answers[key] = btn.getAttribute("data-val");
+        // 選択の即時ハイライト
+        Array.prototype.forEach.call(btn.parentElement.children, function (c) {
+          c.classList.remove("selected");
+        });
+        btn.classList.add("selected");
+        if (step < TOTAL_STEPS - 1) {
+          step++;
+          render();
+        } else {
+          showResult();
+        }
+      });
+
+      backBtn.addEventListener("click", function () {
+        if (step > 0) {
+          step--;
+          render();
+        }
+      });
+
+      // ── スコアリング（実データのみ参照） ──
+      function scoreFirm(f) {
+        var s = 0;
+        var reasons = [];
+
+        // Q1: 口座サイズ
+        if (answers.size === "small") {
+          if (f.minSize !== null && f.minSize <= 25000) {
+            s += 3;
+            reasons.push("$" + f.minSize.toLocaleString() + "の少額プランから始められる");
+          } else if (f.minFee !== null && f.minFee <= 450) {
+            s += 1;
+          }
+        } else if (answers.size === "mid") {
+          if (f.minSize !== null && f.minSize <= 100000 && f.maxSize !== null && f.maxSize >= 50000) {
+            s += 2;
+            reasons.push("$50k〜$100kの標準プランに対応");
+          }
+        } else if (answers.size === "large") {
+          if (f.maxSize !== null && f.maxSize >= 200000) {
+            s += 3;
+            reasons.push("$200k以上の大口口座に対応");
+          }
+        } else if (answers.size === "any") {
+          s += 1;
+        }
+
+        // Q2: 経験
+        if (answers.exp === "beginner") {
+          if (f.japanese) { s += 2; reasons.push("日本語サポートで初挑戦でも安心"); }
+          if (f.score >= 4.4) { s += 2; reasons.push("口コミ評価 " + f.score + " と高評価で信頼性が高い"); }
+          if (f.bestFor.indexOf("初心者") !== -1) { s += 2; reasons.push("初心者向きと評価されている"); }
+        } else if (answers.exp === "intermediate") {
+          if (f.score >= 4.2) s += 1;
+          if (f.maxSplit !== null && f.maxSplit >= 80) { s += 1; }
+        } else if (answers.exp === "advanced") {
+          if (f.maxSplit !== null && f.maxSplit >= 90) { s += 2; reasons.push("最大スプリット" + f.maxSplit + "%で利益最大化を狙える"); }
+          if (f.ea) s += 1;
+        }
+
+        // Q3: 重視点
+        if (answers.priority === "payout") {
+          if (f.maxSplit !== null) {
+            if (f.maxSplit >= 90) { s += 3; reasons.push("プロフィットスプリット最大" + f.maxSplit + "%"); }
+            else if (f.maxSplit >= 80) { s += 1; }
+          }
+        } else if (answers.priority === "rules") {
+          var freedom = 0;
+          if (f.scalping) freedom++;
+          if (f.news) freedom++;
+          if (f.weekendHolding) freedom++;
+          if (f.ea) freedom++;
+          if (freedom >= 4) { s += 3; reasons.push("スキャル・ニュース・EA・週末持ち越しすべて許可で自由度が高い"); }
+          else if (freedom >= 3) { s += 1; }
+        } else if (answers.priority === "speed") {
+          if (f.minPayoutDays !== null) {
+            if (f.minPayoutDays <= 5) { s += 3; reasons.push("最短" + f.minPayoutDays + "日で出金できる"); }
+            else if (f.minPayoutDays <= 7) { s += 1; }
+          }
+        } else if (answers.priority === "japanese") {
+          if (f.japanese) { s += 4; reasons.push("日本語サポートあり"); }
+        } else if (answers.priority === "cost") {
+          if (f.minFee !== null) {
+            if (f.minFee <= 450) { s += 3; reasons.push("最低料金$" + f.minFee + "とコストを抑えやすい"); }
+            else if (f.minFee <= 530) { s += 1; }
+          }
+        }
+
+        // Q4: 受取方法
+        if (answers.payment === "paypal") {
+          if (f.payoutPaypal) { s += 3; reasons.push("PayPalでの受取に対応"); }
+        } else if (answers.payment === "usdt") {
+          if (f.payoutUsdt) { s += 2; reasons.push("仮想通貨（USDT等）での受取に対応"); }
+        } else if (answers.payment === "bank") {
+          if (f.payoutBank) { s += 2; reasons.push("銀行送金 / Wise での受取に対応"); }
+        } else if (answers.payment === "any") {
+          s += 1;
+        }
+
+        // Q5: スタイル
+        if (answers.style === "scalp") {
+          if (f.scalping) { s += 3; reasons.push("スキャルピングが許可されている"); }
+        } else if (answers.style === "swing") {
+          if (f.weekendHolding) { s += 3; reasons.push("週末のポジション持ち越しが可能でスイング向き"); }
+        } else if (answers.style === "ea") {
+          if (f.ea) { s += 3; reasons.push("EA・自動売買が許可されている"); }
+        } else if (answers.style === "any") {
+          s += 1;
+        }
+
+        // 同点時のタイブレーク用に評価スコアを微加点
+        s += (f.score || 0) * 0.1;
+
+        return { score: s, reasons: reasons };
+      }
+
+      function leadText() {
+        var parts = [];
+        var sizeMap = { small: "少額スタート", mid: "標準口座", large: "大口口座", any: "口座サイズはこだわらない" };
+        var expMap = { beginner: "初心者", intermediate: "中級者", advanced: "上級者" };
+        var prMap = { payout: "利益配分重視", rules: "ルールの自由度重視", speed: "出金スピード重視", japanese: "日本語サポート重視", cost: "コスト重視" };
+        var stMap = { scalp: "スキャルピング", swing: "スイング", ea: "EA・自動売買", any: "スタイル未定" };
+        if (sizeMap[answers.size]) parts.push(sizeMap[answers.size]);
+        if (expMap[answers.exp]) parts.push(expMap[answers.exp]);
+        if (prMap[answers.priority]) parts.push(prMap[answers.priority]);
+        if (stMap[answers.style]) parts.push(stMap[answers.style]);
+        return "あなたの回答（" + parts.join(" / ") + "）をもとに、掲載データから相性の高い順に並べました。";
+      }
+
+      function showResult() {
+        var ranked = FIRMS.map(function (f) {
+          var r = scoreFirm(f);
+          return { firm: f, score: r.score, reasons: r.reasons };
+        }).sort(function (a, b) {
+          return b.score - a.score;
+        });
+
+        var top3 = ranked.slice(0, 3);
+        resultLead.textContent = leadText();
+
+        var medals = ["1位", "2位", "3位"];
+        resultCards.innerHTML = top3.map(function (item, i) {
+          var f = item.firm;
+          var reasons = item.reasons.slice(0, 4);
+          if (reasons.length === 0) reasons.push("総合評価のバランスが良い");
+          var reasonHtml = reasons.map(function (r) { return "<li>" + r + "</li>"; }).join("");
+          var sub = [];
+          if (f.maxSplit !== null) sub.push("最大スプリット " + f.maxSplit + "%");
+          if (f.minFee !== null) sub.push("最低料金 $" + f.minFee);
+          if (f.minPayoutDays !== null) sub.push("最短出金 " + f.minPayoutDays + "日");
+          var ctaLabel = (i === 0 ? "公式サイトで詳しく見る" : "公式サイトを見る");
+          return (
+            '<div class="rcard rank-' + (i + 1) + '">' +
+              '<div class="rcard-head">' +
+                '<span class="rcard-rank">' + medals[i] + '</span>' +
+                '<span class="rcard-name">' + f.name + '</span>' +
+                '<span class="rcard-score">★ ' + f.score + '</span>' +
+              '</div>' +
+              '<div class="rcard-tag">' + f.tagline + '</div>' +
+              '<div class="rcard-stats">' + sub.map(function (x) { return '<span>' + x + '</span>'; }).join("") + '</div>' +
+              '<div class="rcard-why-h">あなたに合う理由</div>' +
+              '<ul class="rcard-why">' + reasonHtml + '</ul>' +
+              '<div class="rcard-actions">' +
+                '<a class="rcard-cta" href="' + f.cta + '" target="_blank" rel="sponsored noopener">' + ctaLabel + ' →</a>' +
+                '<a class="rcard-detail" href="/prop/' + f.slug + '/">詳細レビューを読む</a>' +
+              '</div>' +
+            '</div>'
+          );
+        }).join("");
+
+        quiz.hidden = true;
+        resultEl.hidden = false;
+        resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      document.getElementById("retryBtn").addEventListener("click", function () {
+        answers = {};
+        step = 0;
+        Array.prototype.forEach.call(quiz.querySelectorAll(".q-opt.selected"), function (b) {
+          b.classList.remove("selected");
+        });
+        resultEl.hidden = true;
+        quiz.hidden = false;
+        render();
+        quiz.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      render();
+    })();
+  </script>
+
+  <style>
+    .quiz {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 28px 22px;
+      margin-bottom: 28px;
+    }
+    .quiz-progress {
+      height: 6px;
+      background: var(--bg-soft);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 26px;
+    }
+    .quiz-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .quiz-step { display: none; }
+    .quiz-step.is-active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .q-num { font-size: 0.8rem; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+    .q-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.01em; }
+    .q-opts { display: flex; flex-direction: column; gap: 12px; }
+    .q-opt {
+      text-align: left;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      padding: 16px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+    }
+    .q-opt:hover { border-color: var(--accent); background: rgba(0,212,170,0.06); }
+    .q-opt:active { transform: scale(0.99); }
+    .q-opt.selected { border-color: var(--accent); background: rgba(0,212,170,0.12); }
+    .quiz-nav { margin-top: 22px; }
+    .quiz-back {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-family: inherit;
+      cursor: pointer;
+      padding: 6px 4px;
+    }
+    .quiz-back:hover { color: var(--accent); }
+
+    /* 結果 */
+    .quiz-result { animation: fadeIn 0.3s ease; }
+    .result-title { font-size: 1.7rem; font-weight: 800; margin-bottom: 8px; text-align: center; }
+    .result-title .accent { color: var(--accent); }
+    .result-lead { color: var(--text-muted); text-align: center; max-width: 640px; margin: 0 auto 26px; font-size: 0.98rem; }
+    .result-cards { display: flex; flex-direction: column; gap: 18px; }
+    .rcard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+    }
+    .rcard.rank-1 { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .rcard-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+    .rcard-rank {
+      background: var(--accent); color: var(--bg);
+      font-weight: 800; font-size: 0.82rem;
+      padding: 4px 10px; border-radius: 8px;
+    }
+    .rank-2 .rcard-rank, .rank-3 .rcard-rank { background: var(--text-muted); }
+    .rcard-name { font-size: 1.2rem; font-weight: 700; }
+    .rcard-score {
+      margin-left: auto; background: var(--bg-soft);
+      border: 1px solid var(--border); color: var(--warn);
+      font-weight: 700; font-size: 0.85rem; padding: 3px 9px; border-radius: 8px;
+    }
+    .rcard-tag { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 14px; }
+    .rcard-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .rcard-stats span {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      color: var(--text); font-size: 0.8rem; font-weight: 600;
+      padding: 5px 10px; border-radius: 999px;
+    }
+    .rcard-why-h { font-size: 0.82rem; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+    .rcard-why { list-style: none; padding: 0; margin: 0 0 18px; }
+    .rcard-why li { position: relative; padding: 4px 0 4px 22px; font-size: 0.92rem; }
+    .rcard-why li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .rcard-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .rcard-cta {
+      background: var(--accent); color: var(--bg);
+      font-weight: 700; font-size: 0.95rem;
+      padding: 12px 20px; border-radius: 10px;
+    }
+    .rcard-cta:hover { background: var(--accent-hover); text-decoration: none; }
+    .rcard-detail { font-size: 0.9rem; color: var(--text-muted); }
+    .rcard-detail:hover { color: var(--accent); }
+
+    .result-actions {
+      display: flex; gap: 14px; align-items: center; justify-content: center;
+      flex-wrap: wrap; margin-top: 28px;
+    }
+    .quiz-retry {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      color: var(--text); font-family: inherit; font-size: 0.95rem; font-weight: 600;
+      padding: 12px 22px; border-radius: 10px; cursor: pointer;
+    }
+    .quiz-retry:hover { border-color: var(--accent); color: var(--accent); }
+    .quiz-alllink { font-size: 0.95rem; font-weight: 600; }
+    .result-disclaimer {
+      font-size: 0.8rem; color: var(--text-muted); line-height: 1.7;
+      margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--border);
+    }
+
+    .related-links { margin-top: 30px; }
+    .related-links ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
+    .related-links li { padding: 4px 0 4px 16px; position: relative; }
+    .related-links li::before { content: "›"; position: absolute; left: 0; color: var(--accent); }
+
+    @media (max-width: 720px) {
+      .quiz { padding: 22px 18px 18px; }
+      .q-title { font-size: 1.15rem; }
+      .related-links ul { grid-template-columns: 1fr; }
+      .rcard { padding: 18px; }
+      .rcard-actions { flex-direction: column; align-items: stretch; }
+      .rcard-cta { text-align: center; }
+      .rcard-detail { text-align: center; }
+    }
+  </style>
+</BaseLayout>

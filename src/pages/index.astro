@@ -35,8 +35,23 @@ const guideCategories = [
         <div><strong>2026年5月</strong>最終更新</div>
         <div><strong>100%</strong>独立評価</div>
       </div>
+      <a href={url("/shindan/")} class="hero-cta-shindan">🎯 30秒であなたに合うプロップを診断する →</a>
     </div>
   </section>
+
+  <style>
+    .hero-cta-shindan {
+      display: inline-block;
+      margin-top: 26px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 1.02rem;
+      padding: 14px 28px;
+      border-radius: 12px;
+    }
+    .hero-cta-shindan:hover { background: var(--accent-hover); text-decoration: none; }
+  </style>
 
   <section class="section">
     <div class="container">
