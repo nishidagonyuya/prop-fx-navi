@@ -6,11 +6,14 @@ interface Props {
   title: string;
   description: string;
   canonical?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, noindex } = Astro.props;
 const siteName = "プロップFXナビ";
 const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+// 自己参照canonical（未指定なら現在のURLを自動採用）
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang="ja">
@@ -32,7 +35,8 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
   <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793025812615324" crossorigin="anonymous"></script>
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
-  {canonical && <link rel="canonical" href={canonical} />}
+  {noindex && <meta name="robots" content="noindex,follow" />}
+  <link rel="canonical" href={canonicalUrl} />
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />

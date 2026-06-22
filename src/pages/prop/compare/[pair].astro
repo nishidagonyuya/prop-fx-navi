@@ -53,7 +53,7 @@ const overall = winnerCount.a > winnerCount.b ? a : winnerCount.a < winnerCount.
 const title = `${a.name_en} vs ${b.name_en} 徹底比較`;
 const description = `${a.name_en} と ${b.name_en} を15項目で比較。プロフィットスプリット・料金・出金条件・日本語対応まで全て一覧で確認できます。`;
 ---
-<BaseLayout title={`${title}【2026年最新】`} description={description}>
+<BaseLayout title={`${title}【2026年最新】`} description={description} noindex={true}>
   <section class="hero">
     <div class="container">
       <h1>{a.name_en} <span class="accent">vs</span> {b.name_en}</h1>
