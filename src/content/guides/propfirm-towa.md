@@ -50,6 +50,12 @@ related:
 
 まず全体像を押さえたい方は [プロップファーム比較ガイド](/guide/propfirm-hikaku/) や [プロップファーム一覧](/prop/) もあわせてご覧ください。
 
+## 🎥 動画でわかる解説
+
+<div class="article-video">
+  <iframe src="https://www.youtube.com/embed/gTUcuG1hEgU" title="【完全ガイド】プロップファームとは？" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## 30秒でわかる定義：プロップファームとは
 
 **プロップファーム（Proprietary Trading Firm）とは、トレーダーに自社資金を貸し出して、その運用で得られた利益を会社とトレーダーで分配する仕組みの会社です。** 日本語では「プロップ」「ファンディング会社」「資金提供型プロップ」などと呼ばれます。

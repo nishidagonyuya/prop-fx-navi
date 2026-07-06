@@ -55,6 +55,12 @@ related:
 
 プロップファームそのものの仕組みを先に押さえたい方は [プロップファームとは何かの基礎ガイド](/guide/propfirm-vs-fx/) や [失敗しない業者の選び方](/guide/propfirm-osusume/) を先に読んでおくと、税金の話が一段と理解しやすくなります。
 
+## 🎥 動画でわかる解説
+
+<div class="article-video">
+  <iframe src="https://www.youtube.com/embed/orhB8RcwJKQ" title="【落とし穴】プロップファームで注意しないといけない税金について" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## 30秒でわかる定義：プロップファームの税金とは
 
 **プロップファームの税金とは、プロップ会社の資金を運用して受け取った利益分配（プロフィットスプリット）に対して、日本の所得税法上「総合課税の雑所得」として課される税金のことです。**

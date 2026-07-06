@@ -48,6 +48,12 @@ related:
 
 まずは比較の全体像を押さえたい方は [プロップファーム比較ガイド](/guide/propfirm-hikaku/) と [おすすめランキング](/guide/propfirm-osusume/) を、日本語対応を重視する方は [日本語対応プロップファーム](/guide/propfirm-japanese/) を先に読んでおくと、この記事の内容がより立体的に理解できます。
 
+## 🎥 動画でわかる解説
+
+<div class="article-video">
+  <iframe src="https://www.youtube.com/embed/_YZBrZLkwNI" title="【ダマされるな！】プロップファーム詐欺の見分け方とは？" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## 30秒でわかる：プロップファームの「詐欺」とは何か
 
 **プロップファームの詐欺とは、トレーダーから受験料や口座費用を集めながら、約束した利益分配（出金）を正当な理由なく拒否したり、業者自体が突然消滅したりする行為です。**

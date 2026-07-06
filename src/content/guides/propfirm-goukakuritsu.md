@@ -43,6 +43,12 @@ faqs:
 > - ✅ 合格しやすいプランの選び方
 > - ✅ よくある質問（FAQ）
 
+## 🎥 動画でわかる解説
+
+<div class="article-video">
+  <iframe src="https://www.youtube.com/embed/YyEU-4K1Y10" title="プロップファームの合格率は何％？" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## そもそもプロップファームの「合格」とは
 
 プロップファーム（[プロップファームとは](/guide/propfirm-towa/)）の合格＝**チャレンジ（審査）で、決められた利益目標を、リスク管理ルールを守りながら達成すること**です。合格すると会社から資金提供を受け、稼いだ利益の70〜95%を受け取れます。

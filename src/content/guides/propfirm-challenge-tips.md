@@ -55,6 +55,12 @@ related:
 > - ✅ 失格しても損切りしてリスタートする現実的な予算設計
 > - ✅ 自分に合うプロップファームの選び方への動線
 
+## 🎥 動画でわかる解説
+
+<div class="article-video">
+  <iframe src="https://www.youtube.com/embed/hPSuG9LX-G4" title="【失格しない攻略法】プロップファームチャレンジで初回突破する人がやっていること" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## プロップファームのチャレンジとは何か(30秒で分かる前提)
 
 **プロップファームのチャレンジとは、業者が定めた利益目標とリスクルール(日次最大損失・トータル最大損失など)を一定期間内に満たせるかを試す審査トレードのことです。** これに合格すると、自己資金ではなく業者の資金枠(評価額)を使って取引し、得た利益の大部分を受け取れる「ファンデッド(資金提供)トレーダー」になれます。

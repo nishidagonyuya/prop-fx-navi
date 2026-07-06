@@ -47,6 +47,12 @@ related:
 > - ✅ 初心者がやりがちな失敗と、避けるための注意点
 > - ✅ 合格率を上げる準備と、次に読むべきガイド
 
+## 🎥 動画でわかる解説
+
+<div class="article-video">
+  <iframe src="https://www.youtube.com/embed/_2hInpxhckE" title="【2026年版】プロップファームおすすめTOP5！" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## 30秒で分かる「プロップファーム」とは
 
 **プロップファームとは、トレーダーに自己資金ではなく会社の資金を運用させ、その利益を会社とトレーダーで分け合う仕組みを提供する業者のことです。** 多くの場合、まず「チャレンジ」と呼ばれる審査トレードに合格する必要があり、合格すると「ファンデッド口座(資金提供口座)」が与えられます。

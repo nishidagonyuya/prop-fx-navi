@@ -50,6 +50,12 @@ related:
 > - ✅ 移行のタイミングと、よくある失敗パターンを回避できる
 > - ✅ プロップ選びの次のアクション（ランキング・比較）に進める
 
+## 🎥 動画でわかる解説
+
+<div class="article-video">
+  <iframe src="https://www.youtube.com/embed/hzzpg0Dlp1A" title="【時代が変わる？】プロップファームとFXどっちが稼げる？" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## 30秒でわかる：プロップファームと海外FXの違いとは
 
 **プロップファームとは、運営会社の資金を使ってトレードし、得た利益を一定割合（Profit Split）で分け合う仕組みのサービスです。** 自分のお金を市場に晒さず、チャレンジ（審査）に合格すれば会社の資金で大口運用ができます。

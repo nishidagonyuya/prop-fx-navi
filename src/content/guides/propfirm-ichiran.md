@@ -45,6 +45,12 @@ faqs:
 
 全社の個別ページは [プロップファーム一覧ページ](/prop/) から、横断比較は [プロップファーム比較](/guide/propfirm-hikaku/) から確認できます。
 
+## 🎥 動画でわかる解説
+
+<div class="article-video">
+  <iframe src="https://www.youtube.com/embed/DksI3oQFUQg" title="どれがいい？おすすめのプロップファーム一覧を解説！" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## 主要プロップファーム 一覧表
 
 | 業者 | 最低料金 | 最大スプリット | 出金最短 | 日本語 | タイプ |
