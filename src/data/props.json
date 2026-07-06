@@ -1649,7 +1649,16 @@
       "日本語サポート必須",
       "初心者〜中級"
     ],
-    "updated_at": "2026-05-25",
-    "coupons": []
+    "updated_at": "2026-07-06",
+    "coupons": [
+      {
+        "code": "FINEC3S9",
+        "description": "プロップFXナビ限定クーポンコード。申込画面で入力して適用。",
+        "discount_pct": null,
+        "expires_at": null,
+        "badge": "当サイト限定",
+        "type": "exclusive"
+      }
+    ]
   }
 ]
