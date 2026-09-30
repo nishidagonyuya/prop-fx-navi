@@ -4,6 +4,7 @@ description: "PipFarm（ピップファーム）の評判・口コミを徹底�
 publishedAt: "2026-06-15"
 updatedAt: "2026-06-15"
 targetKeyword: "PipFarm 評判"
+firm: "pipfarm"
 order: 65
 faqs:
   - q: "PipFarmは怪しくないですか？詐欺の心配は？"

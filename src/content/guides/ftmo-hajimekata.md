@@ -4,6 +4,7 @@ description: "業界最大手FTMOの始め方を完全解説。アカウント�
 publishedAt: "2026-05-26"
 updatedAt: "2026-06-08"
 targetKeyword: "FTMO 始め方"
+firm: "ftmo"
 order: 12
 faqs:
   - q: "FTMOは本当に10分で始められますか?"

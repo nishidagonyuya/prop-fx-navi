@@ -4,6 +4,7 @@ description: "Fintokei（フィントケイ）は難しいのか？挫折する4
 publishedAt: "2026-06-22"
 updatedAt: "2026-06-22"
 targetKeyword: "Fintokei 難しい"
+firm: "fintokei"
 order: 63
 faqs:
   - q: "Fintokeiのチャレンジは初心者には難しすぎますか？"

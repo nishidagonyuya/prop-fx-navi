@@ -1,0 +1,90 @@
+---
+// ガイド記事のアフィリ出口。frontmatter の firm: に props.json の slug を入れると出る。
+//
+// 🔴 なぜ要るか（2026-10-01）：ガイド記事は affiliate を1箇所も参照しておらず、
+//    「◯◯ 始め方」＝購入直前の検索で来た人がどこにも行けずに終わっていた。
+//    90日で業者名指定276セッションのうち234（85%）が報酬ゼロで素通りしていた。
+// 🔴 リンク未取得の業者は公式URLにフォールバックする（読者の役には立つ。報酬は出ない）。
+//    計測側で「未取得のまま何セッション逃がしているか」が見えるように data-aff を出し分ける。
+import propsData from "../data/props.json";
+
+interface Props {
+  firm: string;
+  variant?: "inline" | "end";
+}
+const { firm, variant = "end" } = Astro.props;
+
+const list: any[] = Array.isArray(propsData) ? propsData : (propsData as any).props ?? [];
+const f = list.find((x) => x.slug === firm);
+
+const href = f ? (f.affiliate_url || f.official_url) : null;
+const isAff = Boolean(f && (f.affiliate_url || "").trim());
+const name = f ? (f.name_ja || f.name_en || f.slug) : "";
+const coupon = f?.coupons?.find((c: any) => c.code);
+---
+
+{f && href && (
+  <aside class={`aff-cta aff-cta--${variant}`}>
+    <div class="aff-cta__head">
+      <span class="aff-cta__label">{variant === "inline" ? "この記事で扱う業者" : "次の一歩"}</span>
+      <strong class="aff-cta__name">{name}</strong>
+    </div>
+
+    {coupon && (
+      <p class="aff-cta__coupon">
+        <span class="aff-cta__badge">{coupon.badge || "クーポン"}</span>
+        コード <code>{coupon.code}</code> を申込画面で入力
+      </p>
+    )}
+
+    <div class="aff-cta__actions">
+      <a
+        class="aff-cta__btn"
+        href={href}
+        target="_blank"
+        rel="sponsored noopener nofollow"
+        data-aff={isAff ? "1" : "0"}
+        data-firm={firm}
+      >{name} 公式サイトへ →</a>
+      <a class="aff-cta__sub" href={`/prop/${firm}/`}>{name} の詳細・条件を見る</a>
+    </div>
+
+    <p class="aff-cta__note">
+      ※リンクから登録された場合、当サイトが紹介料を受け取ることがあります。料金・条件は変動するため申込前に公式でご確認ください。
+    </p>
+  </aside>
+)}
+
+<style>
+  .aff-cta {
+    border: 1px solid var(--border, #2a2f3a);
+    border-radius: 12px;
+    padding: 18px 18px 14px;
+    margin: 28px 0;
+    background: var(--surface-2, rgba(255, 255, 255, 0.03));
+  }
+  .aff-cta--inline { margin: 20px 0 26px; }
+  .aff-cta__head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .aff-cta__label { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--text-muted, #9aa3b2); }
+  .aff-cta__name { font-size: 1.05rem; }
+  .aff-cta__coupon { margin: 10px 0 0; font-size: 0.9rem; }
+  .aff-cta__coupon code {
+    background: rgba(120, 200, 160, 0.14); padding: 2px 8px; border-radius: 5px; font-weight: 700;
+  }
+  .aff-cta__badge {
+    display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 999px;
+    background: #2e7d5b; color: #fff; margin-right: 8px;
+  }
+  .aff-cta__actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+  .aff-cta__btn {
+    display: inline-block; padding: 12px 22px; border-radius: 8px; font-weight: 700;
+    background: #2e7d5b; color: #fff; text-decoration: none;
+  }
+  .aff-cta__btn:hover { filter: brightness(1.08); }
+  .aff-cta__sub { font-size: 0.88rem; color: var(--text-muted, #9aa3b2); }
+  .aff-cta__note { margin: 12px 0 0; font-size: 0.72rem; color: var(--text-muted, #9aa3b2); line-height: 1.6; }
+  @media (max-width: 480px) {
+    .aff-cta__btn { display: block; width: 100%; text-align: center; }
+    .aff-cta__sub { display: block; width: 100%; }
+  }
+</style>

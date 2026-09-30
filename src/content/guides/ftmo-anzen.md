@@ -4,6 +4,7 @@ description: "プロップ最大手 FTMO は本当に安全か？2015年から�
 publishedAt: "2026-05-25"
 updatedAt: "2026-06-08"
 targetKeyword: "FTMO 安全"
+firm: "ftmo"
 order: 3
 faqs:
   - q: "FTMOは詐欺ではないですか？"

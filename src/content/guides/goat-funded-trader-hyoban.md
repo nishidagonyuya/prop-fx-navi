@@ -4,6 +4,7 @@ description: "Goat Funded Trader（ゴート）の評判・口コミを徹底検
 publishedAt: "2026-06-15"
 updatedAt: "2026-06-15"
 targetKeyword: "Goat Funded Trader 評判"
+firm: "goat-funded-trader"
 order: 62
 faqs:
   - q: "Goat Funded Traderは怪しくないですか？詐欺の心配は？"

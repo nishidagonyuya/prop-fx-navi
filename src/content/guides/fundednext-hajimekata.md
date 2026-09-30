@@ -4,6 +4,7 @@ description: "プロフィットスプリット最大95%のFundedNextを完全�
 publishedAt: "2026-05-26"
 updatedAt: "2026-06-08"
 targetKeyword: "FundedNext 始め方"
+firm: "fundednext"
 order: 14
 faqs:
   - q: "FundedNextの始め方を3ステップで言うと何ですか？"

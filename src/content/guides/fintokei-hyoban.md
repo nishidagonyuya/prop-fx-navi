@@ -4,6 +4,7 @@ description: "Fintokei（フィントケイ）の評判・口コミを徹底検�
 publishedAt: "2026-05-26"
 updatedAt: "2026-06-08"
 targetKeyword: "Fintokei 評判"
+firm: "fintokei"
 order: 13
 faqs:
   - q: "Fintokeiは怪しくないですか？詐欺の心配は？"

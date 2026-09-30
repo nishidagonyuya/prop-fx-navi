@@ -4,6 +4,7 @@ description: "Futures(先物)特化プロップの最大手Apex Trader Funding�
 publishedAt: "2026-06-10"
 updatedAt: "2026-06-10"
 targetKeyword: "Apex Trader Funding 始め方 評判"
+firm: "apex-trader-funding"
 order: 53
 faqs:
   - q: "Apex Trader Fundingの始め方を3ステップで言うと何ですか？"

@@ -4,6 +4,7 @@ description: "Fintokei（フィントケイ）のクーポン・割引・キャ�
 publishedAt: "2026-06-22"
 updatedAt: "2026-06-22"
 targetKeyword: "Fintokei クーポン"
+firm: "fintokei"
 order: 65
 faqs:
   - q: "Fintokeiに常設のクーポンコードはありますか？"

@@ -4,6 +4,7 @@ description: "Blueberry Funded（ブルーベリーファンデッド）の評�
 publishedAt: "2026-06-15"
 updatedAt: "2026-06-15"
 targetKeyword: "Blueberry Funded 評判"
+firm: "blueberry-funded"
 order: 64
 faqs:
   - q: "Blueberry Fundedは怪しくないですか？詐欺の心配は？"

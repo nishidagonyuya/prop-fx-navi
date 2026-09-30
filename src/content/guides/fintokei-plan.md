@@ -4,6 +4,7 @@ description: "Fintokei（フィントケイ）の料金プランを徹底解説�
 publishedAt: "2026-06-22"
 updatedAt: "2026-06-22"
 targetKeyword: "Fintokei プラン"
+firm: "fintokei"
 order: 60
 faqs:
   - q: "Fintokeiのプランは全部で何種類ありますか？"

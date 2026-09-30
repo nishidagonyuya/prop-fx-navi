@@ -85,7 +85,7 @@ const breadcrumbLd = {
           <div class="score-box">
             <div class="big">{firm.review_score}</div>
             <div class="label">/ 5.0 ({firm.review_count_external.toLocaleString()}件の評価)</div>
-            <a class="cta-big" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener">公式サイトを見る</a>
+            <a class="cta-big" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener nofollow" data-aff={firm.affiliate_url ? "1" : "0"} data-firm={firm.slug}>公式サイトを見る</a>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@ const breadcrumbLd = {
                 {c.badge && <span class="pill" style="margin-right:8px;">{c.badge}</span>}
                 {c.expires_at ? `〜${c.expires_at}まで` : "期限なし（恒常）"}
               </div>
-              <a class="cta" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener">{firm.name_en}でこのコードを使う →</a>
+              <a class="cta" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener nofollow" data-aff={firm.affiliate_url ? "1" : "0"} data-firm={firm.slug}>{firm.name_en}でこのコードを使う →</a>
             </div>
           ))}
         </div>
@@ -242,7 +242,7 @@ const breadcrumbLd = {
     <div class="container" style="text-align:center;">
       <h2>{firm.name_en} に挑戦する</h2>
       <p style="color:var(--text-muted); margin-bottom:20px;">公式サイトから直接申し込みできます</p>
-      <a class="cta-big" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener">{firm.name_en} 公式サイトへ →</a>
+      <a class="cta-big" href={firm.affiliate_url || firm.official_url} target="_blank" rel="sponsored noopener nofollow" data-aff={firm.affiliate_url ? "1" : "0"} data-firm={firm.slug}>{firm.name_en} 公式サイトへ →</a>
     </div>
   </section>
 </BaseLayout>

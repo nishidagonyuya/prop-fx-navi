@@ -4,6 +4,7 @@ description: "先物プロップの元祖Topstepの始め方を完全解説。20
 publishedAt: "2026-06-10"
 updatedAt: "2026-06-10"
 targetKeyword: "Topstep 始め方 ルール 評判"
+firm: "topstep"
 order: 53
 faqs:
   - q: "Topstepは日本語に対応していますか?"

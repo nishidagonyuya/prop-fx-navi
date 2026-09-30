@@ -4,6 +4,7 @@ description: "リスク制限が緩く長期トレーダー向けの老舗The5%e
 publishedAt: "2026-06-10"
 updatedAt: "2026-06-10"
 targetKeyword: "The5%ers 始め方 スケーリング 評判"
+firm: "the5ers"
 order: 53
 faqs:
   - q: "The5%ersは日本語に対応していますか?"

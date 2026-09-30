@@ -9,6 +9,8 @@ const guides = defineCollection({
     publishedAt: z.string(),
     updatedAt: z.string(),
     targetKeyword: z.string().optional(),
+    // この記事が扱う業者の props.json slug。指定すると記事にアフィリCTAが出る
+    firm: z.string().optional(),
     order: z.number().optional(),
     // FAQPage 構造化データ用（記事末尾にFAQセクションも自動描画）
     faqs: z.array(z.object({ q: z.string(), a: z.string() })).optional(),

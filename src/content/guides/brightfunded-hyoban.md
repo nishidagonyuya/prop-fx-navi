@@ -4,6 +4,7 @@ description: "BrightFunded（ブライトファンデッド）の評判・口コ
 publishedAt: "2026-06-15"
 updatedAt: "2026-06-15"
 targetKeyword: "BrightFunded 評判"
+firm: "brightfunded"
 order: 63
 faqs:
   - q: "BrightFundedは怪しくないですか？詐欺の心配は？"

@@ -4,6 +4,7 @@ description: "出金最短3日・料金525ドルからの低コストで急成�
 publishedAt: "2026-06-10"
 updatedAt: "2026-06-10"
 targetKeyword: "Funding Pips 始め方 出金 評判"
+firm: "fundingpips"
 order: 45
 faqs:
   - q: "Funding Pipsの始め方を3ステップで言うと何ですか？"

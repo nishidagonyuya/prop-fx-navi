@@ -4,6 +4,7 @@ description: "Fintokei（フィントケイ）のチャレンジ攻略を実践�
 publishedAt: "2026-06-22"
 updatedAt: "2026-06-22"
 targetKeyword: "Fintokei 攻略"
+firm: "fintokei"
 order: 62
 faqs:
   - q: "Fintokeiの攻略で最初に決めるべきことは何ですか？"

@@ -4,6 +4,7 @@ description: "Equinox FXグループのプロップ部門FXIFYを完全攻略。
 publishedAt: "2026-06-10"
 updatedAt: "2026-06-10"
 targetKeyword: "FXIFY 始め方 プラン 評判"
+firm: "fxify"
 order: 53
 faqs:
   - q: "FXIFYの始め方を3ステップで言うと何ですか？"

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AuthorBox from "../../components/AuthorBox.astro";
+import AffiliateCTA from "../../components/AffiliateCTA.astro";
 import { getCollection, render } from "astro:content";
 import { url } from "../../lib/url";
 
@@ -11,6 +12,9 @@ export async function getStaticPaths() {
 
 const { guide } = Astro.props;
 const { Content } = await render(guide);
+
+// この記事が扱う業者（frontmatter の firm）。あればアフィリCTAを出す
+const firm = guide.data.firm;
 
 // 宮城ガイ プロフィールページ自身には監修バイラインを出さない
 const isProfilePage = guide.id === "miyagi-gai-profile";
@@ -103,6 +107,7 @@ const otherGuides = [...relatedManual, ...fallback].slice(0, 6);
   <section class="section" style="padding-top:0;">
     <div class="container article-content" style="max-width:760px;">
       {!isProfilePage && <AuthorBox variant="compact" updatedAt={guide.data.updatedAt} />}
+      {firm && <AffiliateCTA firm={firm} variant="inline" />}
       <Content />
 
       {faqs.length > 0 && (
@@ -117,6 +122,7 @@ const otherGuides = [...relatedManual, ...fallback].slice(0, 6);
         </div>
       )}
 
+      {firm && <AffiliateCTA firm={firm} variant="end" />}
       {!isProfilePage && <AuthorBox variant="full" />}
       <p class="article-disclaimer">
         ※本記事は情報提供を目的としたものであり、特定の金融商品の勧誘・投資助言を目的とするものではありません。プロップファームの利用やトレードは自己責任で行ってください。税務・法務など個別の判断は専門家にご相談ください。当サイトはアフィリエイトプログラムに参加しており、記事内のリンクから登録された場合に紹介料を受け取ることがあります。

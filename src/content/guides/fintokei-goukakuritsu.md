@@ -4,6 +4,7 @@ description: "Fintokei（フィントケイ）の合格率は公表されてい�
 publishedAt: "2026-06-22"
 updatedAt: "2026-06-22"
 targetKeyword: "Fintokei 合格率"
+firm: "fintokei"
 order: 61
 faqs:
   - q: "Fintokeiの合格率は何%ですか？"

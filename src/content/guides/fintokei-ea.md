@@ -4,6 +4,7 @@ description: "Fintokei（フィントケイ）でEA（自動売買）は使え�
 publishedAt: "2026-06-22"
 updatedAt: "2026-06-22"
 targetKeyword: "Fintokei EA"
+firm: "fintokei"
 order: 64
 faqs:
   - q: "FintokeiでEA(自動売買)は使えますか?"

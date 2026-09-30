@@ -102,5 +102,21 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
       </div>
     </div>
   </footer>
+
+  <!-- アフィリリンクのクリック計測（先行指標①＝CTR）。
+       🔴 これが無いとCVRが測れず「月100万に必要なセッション数」が永遠に確定しない。
+       data-aff="1"=提携済み / "0"=未取得で公式へ素通し（＝取りこぼしの実額が見える） -->
+  <script is:inline>
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[rel~="sponsored"]') : null;
+      if (!a || typeof gtag !== 'function') return;
+      gtag('event', 'affiliate_click', {
+        firm: a.getAttribute('data-firm') || 'unknown',
+        is_affiliate: a.getAttribute('data-aff') === '1' ? 1 : 0,
+        link_url: a.href,
+        page_path: location.pathname
+      });
+    }, true);
+  </script>
 </body>
 </html>
